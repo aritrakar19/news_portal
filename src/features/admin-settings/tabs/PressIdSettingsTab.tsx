@@ -1,0 +1,107 @@
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Switch } from "@/components/ui/switch"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { QrCode, ShieldCheck } from "lucide-react"
+import { mockSystemConfig } from "../data/mockSettings"
+
+export function PressIdSettingsTab() {
+  const { pressId } = mockSystemConfig
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl">
+      <div className="space-y-6 lg:col-span-2">
+        <Card className="border shadow-sm">
+          <CardHeader>
+            <CardTitle>Press ID Configuration</CardTitle>
+            <CardDescription>Manage the formatting and security of digital press cards.</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="idPrefix">ID Number Prefix</Label>
+                <Input id="idPrefix" defaultValue={pressId.prefix} />
+                <p className="text-xs text-muted-foreground">e.g., PN1-2024-XXXX</p>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="expiryDays">Default Expiry (Days)</Label>
+                <Input id="expiryDays" type="number" defaultValue={pressId.expiryDays} />
+                <p className="text-xs text-muted-foreground">Days until the ID requires renewal.</p>
+              </div>
+            </div>
+
+            <div className="pt-2 flex items-center justify-between">
+              <div className="space-y-0.5">
+                <Label className="text-base">Auto-Generate IDs</Label>
+                <p className="text-sm text-muted-foreground">Automatically issue a Press ID when a reporter is approved.</p>
+              </div>
+              <Switch defaultChecked={pressId.autoGeneration} />
+            </div>
+
+            <div className="pt-2 flex items-center justify-between">
+              <div className="space-y-0.5">
+                <Label className="text-base">QR Code Verification</Label>
+                <p className="text-sm text-muted-foreground">Embed a scannable QR code linking to the reporter's public profile.</p>
+              </div>
+              <Switch defaultChecked={pressId.qrVerification} />
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="border shadow-sm">
+          <CardHeader>
+            <CardTitle>Digital Signatures</CardTitle>
+            <CardDescription>Upload the authorized signature to appear on generated Press IDs.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="border-2 border-dashed border-border rounded-lg p-6 flex flex-col items-center justify-center text-center bg-slate-50 dark:bg-slate-900/50 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors cursor-pointer">
+              <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Signature_of_John_Hancock.svg" alt="Signature" className="object-cover h-full w-full h-16 opacity-50 dark:invert mb-4" width={800} height={400} onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=800&auto=format&fit=crop'; e.currentTarget.onerror = null; }} />
+              <p className="text-sm font-medium mb-1">Click to update authorized signature</p>
+              <p className="text-xs text-muted-foreground">Transparent PNG recommended. Up to 1MB.</p>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <div className="lg:col-span-1">
+        <Card className="border shadow-sm sticky top-6">
+          <CardHeader className="pb-4 border-b bg-slate-50 dark:bg-slate-900/50">
+            <CardTitle className="text-base flex items-center gap-2">
+              <ShieldCheck className="h-5 w-5 text-blue-500" />
+              Live Preview
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-6 bg-slate-100 dark:bg-slate-800 flex justify-center items-center">
+            {/* Press ID Mockup */}
+            <div className="w-[280px] bg-white dark:bg-slate-950 rounded-xl overflow-hidden shadow-xl border border-slate-200 dark:border-slate-800">
+              <div className="bg-red-600 p-4 text-center">
+                <h3 className="font-heading font-bold text-white tracking-wider text-lg">PRESS</h3>
+                <p className="text-red-100 text-[10px] font-semibold uppercase tracking-widest mt-1">PUBLIC NEWS 1</p>
+              </div>
+              <div className="p-5 flex flex-col items-center text-center">
+                <Avatar className="h-24 w-24 border-4 border-white shadow-md -mt-12 mb-3">
+                  <AvatarImage src="https://i.pravatar.cc/150?u=mockup" />
+                  <AvatarFallback>JD</AvatarFallback>
+                </Avatar>
+                <h4 className="font-bold text-lg text-slate-900 dark:text-white leading-tight">John Doe</h4>
+                <p className="text-sm text-red-600 font-medium">Senior Reporter</p>
+                
+                <div className="w-full mt-4 p-3 bg-slate-50 dark:bg-slate-900 rounded-lg flex items-center justify-between border border-slate-100 dark:border-slate-800">
+                  <div className="text-left">
+                    <p className="text-[10px] text-muted-foreground uppercase">ID Number</p>
+                    <p className="text-xs font-mono font-bold text-slate-900 dark:text-white">{pressId.prefix}1042</p>
+                  </div>
+                  <QrCode className="h-8 w-8 text-slate-700 dark:text-slate-300" />
+                </div>
+              </div>
+              <div className="bg-slate-100 dark:bg-slate-900 p-2 text-center border-t border-slate-200 dark:border-slate-800">
+                <p className="text-[9px] text-muted-foreground uppercase tracking-wider">Valid until Dec 2025</p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  )
+}
