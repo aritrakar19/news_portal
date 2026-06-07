@@ -1,5 +1,5 @@
 import { 
-  ResponsiveContainer, AreaChart, Area, 
+  ResponsiveContainer, Area, 
   ComposedChart, Bar, Line, XAxis, YAxis, Tooltip, CartesianGrid
 } from "recharts"
 import { mockAdTrends } from "../data/mockAds"

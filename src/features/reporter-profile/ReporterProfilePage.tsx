@@ -4,15 +4,15 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { motion } from "framer-motion"
 import { 
-  User, Mail, Phone, MapPin, Calendar, Briefcase, 
+  User, Mail, Phone, MapPin, Briefcase, 
   ShieldCheck, Shield, Lock, FileText, CheckCircle2, 
-  AlertCircle, Upload, Eye, RefreshCw, AlertTriangle
+  AlertCircle, Upload, Eye, RefreshCw
 } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Progress } from "@/components/ui/progress"
@@ -102,7 +102,7 @@ export function ReporterProfilePage() {
     },
   })
 
-  const onPersonalSubmit = (data: z.infer<typeof personalInfoSchema>) => {
+  const onPersonalSubmit = () => {
     setIsSaving(true)
     setTimeout(() => {
       setIsSaving(false)
@@ -110,7 +110,7 @@ export function ReporterProfilePage() {
     }, 1000)
   }
 
-  const onProfessionalSubmit = (data: z.infer<typeof professionalInfoSchema>) => {
+  const onProfessionalSubmit = () => {
     setIsSaving(true)
     setTimeout(() => {
       setIsSaving(false)
@@ -118,7 +118,7 @@ export function ReporterProfilePage() {
     }, 1000)
   }
 
-  const onSecuritySubmit = (data: z.infer<typeof securitySchema>) => {
+  const onSecuritySubmit = () => {
     setIsSaving(true)
     setTimeout(() => {
       setIsSaving(false)

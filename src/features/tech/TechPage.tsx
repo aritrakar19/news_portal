@@ -1,4 +1,4 @@
-import { useState } from "react"
+
 import { motion } from "framer-motion"
 import { 
   Cpu, 
@@ -264,7 +264,7 @@ export function TechPage() {
                   </h3>
                 </div>
                 <div className="flex flex-col divide-y divide-border/50 flex-1">
-                  {TOP_HEADLINES.map((headline, index) => (
+                  {TOP_HEADLINES.map((headline) => (
                     <div key={headline.id} className="p-5 group cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors">
                       <h4 className="text-sm font-bold leading-snug text-slate-900 dark:text-slate-200 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
                         {headline.title}
@@ -324,7 +324,7 @@ export function TechPage() {
               <ChevronRight className="h-5 w-5 text-muted-foreground cursor-pointer" />
             </div>
             <div className="space-y-6">
-              {AI_INNOVATION.map((news, index) => (
+              {AI_INNOVATION.map((news) => (
                 <div key={news.id} className="group cursor-pointer">
                   <div className="relative aspect-video rounded-xl overflow-hidden mb-4 border border-border/50">
                     <img src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" width={800} height={400} onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=800&auto=format&fit=crop'; e.currentTarget.onerror = null; }} />
@@ -355,7 +355,7 @@ export function TechPage() {
               <ChevronRight className="h-5 w-5 text-muted-foreground cursor-pointer" />
             </div>
             <div className="flex flex-col gap-6">
-              {GADGET_NEWS.map((gadget, index) => (
+              {GADGET_NEWS.map((gadget) => (
                 <div key={gadget.id} className="group flex gap-5 cursor-pointer bg-white dark:bg-slate-900 p-3 rounded-2xl border border-border shadow-sm hover:shadow-md transition-all">
                   <div className="w-32 h-24 rounded-xl overflow-hidden shrink-0">
                     <img src={gadget.image} alt={gadget.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" width={800} height={400} onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=800&auto=format&fit=crop'; e.currentTarget.onerror = null; }} />

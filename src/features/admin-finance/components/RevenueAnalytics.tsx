@@ -43,11 +43,11 @@ export function RevenueAnalytics() {
                 dataKey="value"
                 nameKey="name"
               >
-                {mockCategoryRevenue.map((entry, index) => (
+                {mockCategoryRevenue.map((_, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
-              <Tooltip contentStyle={{ borderRadius: "8px" }} formatter={(value: number) => `${value}%`} />
+              <Tooltip contentStyle={{ borderRadius: "8px" }} formatter={(value: any) => `${value}%`} />
             </PieChart>
           </ResponsiveContainer>
         </div>
@@ -70,7 +70,7 @@ export function RevenueAnalytics() {
               <CartesianGrid strokeDasharray="3 3" horizontal={false} stroke="#e2e8f0" />
               <XAxis type="number" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#64748b" }} />
               <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#64748b" }} width={80} />
-              <Tooltip contentStyle={{ borderRadius: "8px" }} formatter={(value: number) => `₹${value.toLocaleString()}`} />
+              <Tooltip contentStyle={{ borderRadius: "8px" }} formatter={(value: any) => `₹${Number(value).toLocaleString()}`} />
               <Area type="monotone" dataKey="revenue" stroke="#8b5cf6" fill="#8b5cf6" fillOpacity={0.2} />
             </AreaChart>
           </ResponsiveContainer>

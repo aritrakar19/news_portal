@@ -12,7 +12,6 @@ import {
   BarChart3,
   Search,
   Filter,
-  MoreVertical,
   Edit,
   Copy,
   Trash2,

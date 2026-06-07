@@ -1,4 +1,4 @@
-import { useState } from "react"
+
 import { motion } from "framer-motion"
 import { 
   TrendingUp, 
@@ -296,7 +296,7 @@ export function BusinessPage() {
               </h3>
             </div>
             <div className="space-y-6">
-              {STARTUP_NEWS.map((news, index) => (
+              {STARTUP_NEWS.map((news) => (
                 <div key={news.id} className="group flex gap-4 cursor-pointer">
                   <div className="w-1/3 aspect-video rounded-lg overflow-hidden shrink-0">
                     <img src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" width={800} height={400} onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=800&auto=format&fit=crop'; e.currentTarget.onerror = null; }} />
@@ -323,7 +323,7 @@ export function BusinessPage() {
               </h3>
             </div>
             <div className="space-y-6">
-              {CORPORATE_NEWS.map((news, index) => (
+              {CORPORATE_NEWS.map((news) => (
                 <div key={news.id} className="group flex gap-4 cursor-pointer">
                   <div className="w-1/3 aspect-video rounded-lg overflow-hidden shrink-0">
                     <img src={news.image} alt={news.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" width={800} height={400} onError={(e) => { e.currentTarget.src = 'https://images.unsplash.com/photo-1585829365295-ab7cd400c167?q=80&w=800&auto=format&fit=crop'; e.currentTarget.onerror = null; }} />

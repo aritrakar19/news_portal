@@ -13,10 +13,10 @@ import {
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Separator } from "@/components/ui/separator"
+
 
 // --- Dummy Data ---
 
@@ -168,7 +168,7 @@ const NEWS_GRID = [
 ]
 
 export function PoliticsPage() {
-  const [activeState, setActiveState] = useState("Delhi")
+  const [, setActiveState] = useState("Delhi")
 
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pb-16">

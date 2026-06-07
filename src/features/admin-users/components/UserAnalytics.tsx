@@ -53,7 +53,7 @@ export function UserAnalytics() {
                 dataKey="value"
                 nameKey="name"
               >
-                {mockRoleDistribution.map((entry, index) => (
+                {mockRoleDistribution.map((_, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>
