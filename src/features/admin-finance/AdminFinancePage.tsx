@@ -16,8 +16,11 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { useTranslation } from "react-i18next"
 
 export function AdminFinancePage() {
+  const { t } = useTranslation()
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,31 +47,31 @@ export function AdminFinancePage() {
     >
       <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">Finance & Earnings</h1>
+          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{t("admin.finance.title", "Finance & Earnings")}</h1>
           <p className="text-muted-foreground mt-2 max-w-2xl">
-            Executive control center for platform revenue, payouts, and financial analytics.
+            {t("admin.finance.subtitle", "Executive control center for platform revenue, payouts, and financial analytics.")}
           </p>
         </div>
         <div className="flex gap-3">
           <Button variant="outline">
-            <Settings className="mr-2 h-4 w-4" /> Rules
+            <Settings className="mr-2 h-4 w-4" /> {t("admin.finance.rules", "Rules")}
           </Button>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                <DownloadCloud className="mr-2 h-4 w-4" /> Export Reports
+                <DownloadCloud className="mr-2 h-4 w-4" /> {t("admin.finance.exportReports", "Export Reports")}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-[200px]">
-              <DropdownMenuLabel>Generate Report</DropdownMenuLabel>
-              <DropdownMenuItem><FileText className="mr-2 h-4 w-4" /> Daily Summary</DropdownMenuItem>
-              <DropdownMenuItem><FileText className="mr-2 h-4 w-4" /> Weekly Breakdown</DropdownMenuItem>
-              <DropdownMenuItem><FileText className="mr-2 h-4 w-4" /> Monthly Statement</DropdownMenuItem>
+              <DropdownMenuLabel>{t("admin.finance.generateReport", "Generate Report")}</DropdownMenuLabel>
+              <DropdownMenuItem><FileText className="mr-2 h-4 w-4" /> {t("admin.finance.dailySummary", "Daily Summary")}</DropdownMenuItem>
+              <DropdownMenuItem><FileText className="mr-2 h-4 w-4" /> {t("admin.finance.weeklyBreakdown", "Weekly Breakdown")}</DropdownMenuItem>
+              <DropdownMenuItem><FileText className="mr-2 h-4 w-4" /> {t("admin.finance.monthlyStatement", "Monthly Statement")}</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuLabel>Format</DropdownMenuLabel>
-              <DropdownMenuItem>Export as PDF</DropdownMenuItem>
-              <DropdownMenuItem>Export as Excel (XLSX)</DropdownMenuItem>
-              <DropdownMenuItem>Export as CSV</DropdownMenuItem>
+              <DropdownMenuLabel>{t("admin.finance.format", "Format")}</DropdownMenuLabel>
+              <DropdownMenuItem>{t("admin.finance.exportPdf", "Export as PDF")}</DropdownMenuItem>
+              <DropdownMenuItem>{t("admin.finance.exportExcel", "Export as Excel (XLSX)")}</DropdownMenuItem>
+              <DropdownMenuItem>{t("admin.finance.exportCsv", "Export as CSV")}</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
@@ -81,9 +84,9 @@ export function AdminFinancePage() {
       <Tabs defaultValue="overview" className="space-y-8">
         <motion.div variants={itemVariants}>
           <TabsList className="bg-muted/50 p-1">
-            <TabsTrigger value="overview">Overview</TabsTrigger>
-            <TabsTrigger value="earnings">Reporter Earnings</TabsTrigger>
-            <TabsTrigger value="withdrawals">Withdrawals</TabsTrigger>
+            <TabsTrigger value="overview">{t("admin.finance.overview", "Overview")}</TabsTrigger>
+            <TabsTrigger value="earnings">{t("admin.finance.reporterEarnings", "Reporter Earnings")}</TabsTrigger>
+            <TabsTrigger value="withdrawals">{t("admin.finance.withdrawals", "Withdrawals")}</TabsTrigger>
           </TabsList>
         </motion.div>
 

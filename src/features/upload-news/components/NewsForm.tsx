@@ -9,8 +9,10 @@ import { Switch } from "@/components/ui/switch"
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { FileUploadZone } from "./FileUploadZone"
 import { Bold, Italic, Link2, List, Type } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function NewsForm() {
+  const { t } = useTranslation()
   const form = useForm<NewsFormValues>({
     resolver: zodResolver(newsSchema) as any,
     defaultValues: {
@@ -37,18 +39,18 @@ export function NewsForm() {
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           
           <div className="space-y-6">
-            <h3 className="text-xl font-heading font-bold border-b border-border pb-2">Basic Information</h3>
+            <h3 className="text-xl font-heading font-bold border-b border-border pb-2">{t("upload.form.basicInfo", "Basic Information")}</h3>
             
             <FormField
               control={form.control}
               name="headline"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold text-base">Headline <span className="text-destructive">*</span></FormLabel>
+                  <FormLabel className="font-semibold text-base">{t("upload.form.headline", "Headline")} <span className="text-destructive">*</span></FormLabel>
                   <FormControl>
-                    <Input placeholder="E.g., City Council Approves New Budget for Education" className="h-12 text-lg font-medium" {...field} />
+                    <Input placeholder={t("upload.form.headlinePlaceholder", "E.g., City Council Approves New Budget for Education")} className="h-12 text-lg font-medium" {...field} />
                   </FormControl>
-                  <FormDescription>Make it catchy but truthful. Min 10, max 120 characters.</FormDescription>
+                  <FormDescription>{t("upload.form.headlineDesc", "Make it catchy but truthful. Min 10, max 120 characters.")}</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -59,9 +61,9 @@ export function NewsForm() {
               name="summary"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold">Short Summary <span className="text-destructive">*</span></FormLabel>
+                  <FormLabel className="font-semibold">{t("upload.form.summary", "Short Summary")} <span className="text-destructive">*</span></FormLabel>
                   <FormControl>
-                    <Textarea placeholder="A brief 2-3 sentence overview of the news..." className="resize-none h-24" {...field} />
+                    <Textarea placeholder={t("upload.form.summaryPlaceholder", "A brief 2-3 sentence overview of the news...")} className="resize-none h-24" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -73,7 +75,7 @@ export function NewsForm() {
               name="content"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-semibold">Full News Description <span className="text-destructive">*</span></FormLabel>
+                  <FormLabel className="font-semibold">{t("upload.form.fullDesc", "Full News Description")} <span className="text-destructive">*</span></FormLabel>
                   <div className="border border-border rounded-md overflow-hidden focus-within:ring-1 focus-within:ring-ring">
                     {/* Mock Rich Text Toolbar */}
                     <div className="bg-slate-50 dark:bg-slate-900 border-b border-border p-2 flex items-center gap-1">
@@ -87,7 +89,7 @@ export function NewsForm() {
                     </div>
                     <FormControl>
                       <Textarea 
-                        placeholder="Write the full story here..." 
+                        placeholder={t("upload.form.fullDescPlaceholder", "Write the full story here...")}
                         className="resize-y min-h-[300px] border-0 focus-visible:ring-0 rounded-none bg-transparent" 
                         {...field} 
                       />
@@ -100,7 +102,7 @@ export function NewsForm() {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xl font-heading font-bold border-b border-border pb-2 pt-4">Classification & Location</h3>
+            <h3 className="text-xl font-heading font-bold border-b border-border pb-2 pt-4">{t("upload.form.classification", "Classification & Location")}</h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <FormField
@@ -108,11 +110,11 @@ export function NewsForm() {
                 name="category"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Category <span className="text-destructive">*</span></FormLabel>
+                    <FormLabel>{t("upload.form.category", "Category")} <span className="text-destructive">*</span></FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select a category" />
+                          <SelectValue placeholder={t("upload.form.categoryPlaceholder", "Select a category")} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -135,9 +137,9 @@ export function NewsForm() {
                 name="tags"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Tags (Comma separated)</FormLabel>
+                    <FormLabel>{t("upload.form.tags", "Tags (Comma separated)")}</FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g. elections, city council, budget" {...field} />
+                      <Input placeholder={t("upload.form.tagsPlaceholder", "e.g. elections, city council, budget")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -151,10 +153,10 @@ export function NewsForm() {
                 name="state"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>State <span className="text-destructive">*</span></FormLabel>
+                    <FormLabel>{t("upload.form.state", "State")} <span className="text-destructive">*</span></FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger><SelectValue placeholder="Select State" /></SelectTrigger>
+                        <SelectTrigger><SelectValue placeholder={t("upload.form.statePlaceholder", "Select State")} /></SelectTrigger>
                       </FormControl>
                       <SelectContent>
                         <SelectItem value="maharashtra">Maharashtra</SelectItem>
@@ -172,10 +174,10 @@ export function NewsForm() {
                 name="district"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>District <span className="text-destructive">*</span></FormLabel>
+                    <FormLabel>{t("upload.form.district", "District")} <span className="text-destructive">*</span></FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger><SelectValue placeholder="Select District" /></SelectTrigger>
+                        <SelectTrigger><SelectValue placeholder={t("upload.form.districtPlaceholder", "Select District")} /></SelectTrigger>
                       </FormControl>
                       <SelectContent>
                         <SelectItem value="mumbai">Mumbai</SelectItem>
@@ -192,9 +194,9 @@ export function NewsForm() {
                 name="location"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Specific Location <span className="text-destructive">*</span></FormLabel>
+                    <FormLabel>{t("upload.form.location", "Specific Location")} <span className="text-destructive">*</span></FormLabel>
                     <FormControl>
-                      <Input placeholder="e.g. Andheri West" {...field} />
+                      <Input placeholder={t("upload.form.locationPlaceholder", "e.g. Andheri West")} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -209,10 +211,10 @@ export function NewsForm() {
                 <FormItem className="flex flex-row items-center justify-between rounded-lg border border-border p-4 shadow-sm bg-slate-50 dark:bg-slate-900/50">
                   <div className="space-y-0.5">
                     <FormLabel className="text-base font-bold text-destructive">
-                      Breaking News
+                      {t("upload.form.breakingNews", "Breaking News")}
                     </FormLabel>
                     <FormDescription>
-                      Mark this story as urgent breaking news. Requires editor approval.
+                      {t("upload.form.breakingNewsDesc", "Mark this story as urgent breaking news. Requires editor approval.")}
                     </FormDescription>
                   </div>
                   <FormControl>
@@ -227,19 +229,19 @@ export function NewsForm() {
           </div>
 
           <div className="space-y-6">
-            <h3 className="text-xl font-heading font-bold border-b border-border pb-2 pt-4">Media Attachments</h3>
+            <h3 className="text-xl font-heading font-bold border-b border-border pb-2 pt-4">{t("upload.form.media", "Media Attachments")}</h3>
             
-            <FileUploadZone label="Featured Image (Primary)" accept="image/*" icon="image" />
-            <FileUploadZone label="Additional Images (Optional)" accept="image/*" icon="image" multiple />
-            <FileUploadZone label="Video Attachment (Optional)" accept="video/*" icon="video" />
+            <FileUploadZone label={t("upload.form.featuredImage", "Featured Image (Primary)")} accept="image/*" icon="image" />
+            <FileUploadZone label={t("upload.form.additionalImages", "Additional Images (Optional)")} accept="image/*" icon="image" multiple />
+            <FileUploadZone label={t("upload.form.videoAttachment", "Video Attachment (Optional)")} accept="video/*" icon="video" />
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 pt-6 border-t border-border">
             <Button type="button" variant="outline" className="sm:w-1/3">
-              Save as Draft
+              {t("upload.form.saveDraft", "Save as Draft")}
             </Button>
             <Button type="submit" className="sm:w-2/3 font-bold text-md h-11">
-              Submit News for Review
+              {t("upload.form.submitReview", "Submit News for Review")}
             </Button>
           </div>
         </form>

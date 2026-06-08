@@ -11,6 +11,7 @@ import { Separator } from "@/components/ui/separator"
 import { CheckCircle2, XCircle, FileText, Download, Mail, Phone, MapPin, IndianRupee, FileVideo } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { useTranslation } from "react-i18next"
 
 interface ReporterDetailsSheetProps {
   reporter: Reporter | null
@@ -19,6 +20,8 @@ interface ReporterDetailsSheetProps {
 }
 
 export function ReporterDetailsSheet({ reporter, open, onOpenChange }: ReporterDetailsSheetProps) {
+  const { t } = useTranslation()
+
   if (!reporter) return null
 
   const getStatusColor = (status: string) => {
@@ -38,11 +41,11 @@ export function ReporterDetailsSheet({ reporter, open, onOpenChange }: ReporterD
       <SheetContent className="w-full sm:max-w-xl overflow-y-auto">
         <SheetHeader className="text-left mb-6">
           <div className="flex items-center justify-between">
-            <SheetTitle>Reporter Details</SheetTitle>
+            <SheetTitle>{t("admin.reporters.sheet.title", "Reporter Details")}</SheetTitle>
             <Badge variant="outline" className="font-mono">{reporter.id}</Badge>
           </div>
           <SheetDescription>
-            Full profile, verification status, and activity overview.
+            {t("admin.reporters.sheet.description", "Full profile, verification status, and activity overview.")}
           </SheetDescription>
         </SheetHeader>
 
@@ -57,10 +60,10 @@ export function ReporterDetailsSheet({ reporter, open, onOpenChange }: ReporterD
               <h2 className="text-2xl font-bold">{reporter.name}</h2>
               <div className="flex flex-wrap gap-2 mt-2">
                 <Badge variant="secondary" className={getStatusColor(reporter.accountStatus)}>
-                  Account: {reporter.accountStatus}
+                  {t("admin.reporters.sheet.account", "Account")}: {reporter.accountStatus}
                 </Badge>
                 <Badge variant="secondary" className={getStatusColor(reporter.pressIdStatus)}>
-                  Press ID: {reporter.pressIdStatus}
+                  {t("admin.reporters.sheet.pressId", "Press ID")}: {reporter.pressIdStatus}
                 </Badge>
               </div>
             </div>
@@ -71,7 +74,7 @@ export function ReporterDetailsSheet({ reporter, open, onOpenChange }: ReporterD
           {/* Contact & Location */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Contact Details</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">{t("admin.reporters.sheet.contact", "Contact Details")}</h3>
               <div className="flex items-center gap-2 text-sm">
                 <Phone className="h-4 w-4 text-muted-foreground" />
                 <span>{reporter.mobile}</span>
@@ -82,7 +85,7 @@ export function ReporterDetailsSheet({ reporter, open, onOpenChange }: ReporterD
               </div>
             </div>
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Location</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">{t("admin.reporters.sheet.location", "Location")}</h3>
               <div className="flex items-start gap-2 text-sm">
                 <MapPin className="h-4 w-4 text-muted-foreground mt-0.5 shrink-0" />
                 <span>{reporter.address}</span>
@@ -97,7 +100,7 @@ export function ReporterDetailsSheet({ reporter, open, onOpenChange }: ReporterD
 
           {/* Verification Status */}
           <div>
-            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">Verification Status</h3>
+            <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">{t("admin.reporters.sheet.verification", "Verification Status")}</h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="flex items-center gap-2">
                 {reporter.aadhaarVerified ? (
@@ -106,7 +109,7 @@ export function ReporterDetailsSheet({ reporter, open, onOpenChange }: ReporterD
                   <XCircle className="h-5 w-5 text-rose-500" />
                 )}
                 <div>
-                  <div className="text-sm font-medium">Aadhaar</div>
+                  <div className="text-sm font-medium">{t("admin.reporters.sheet.aadhaar", "Aadhaar")}</div>
                   <div className="text-xs text-muted-foreground font-mono">{reporter.aadhaar}</div>
                 </div>
               </div>
@@ -117,8 +120,8 @@ export function ReporterDetailsSheet({ reporter, open, onOpenChange }: ReporterD
                   <XCircle className="h-5 w-5 text-rose-500" />
                 )}
                 <div>
-                  <div className="text-sm font-medium">Mobile Number</div>
-                  <div className="text-xs text-muted-foreground">OTP Verified</div>
+                  <div className="text-sm font-medium">{t("admin.reporters.sheet.mobile", "Mobile Number")}</div>
+                  <div className="text-xs text-muted-foreground">{t("admin.reporters.sheet.otpVerified", "OTP Verified")}</div>
                 </div>
               </div>
               <div className="flex items-center gap-2">
@@ -128,8 +131,8 @@ export function ReporterDetailsSheet({ reporter, open, onOpenChange }: ReporterD
                   <XCircle className="h-5 w-5 text-rose-500" />
                 )}
                 <div>
-                  <div className="text-sm font-medium">Email Address</div>
-                  <div className="text-xs text-muted-foreground">Link Verified</div>
+                  <div className="text-sm font-medium">{t("admin.reporters.sheet.email", "Email Address")}</div>
+                  <div className="text-xs text-muted-foreground">{t("admin.reporters.sheet.linkVerified", "Link Verified")}</div>
                 </div>
               </div>
             </div>
@@ -140,23 +143,23 @@ export function ReporterDetailsSheet({ reporter, open, onOpenChange }: ReporterD
           {/* Performance & Docs */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Performance</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">{t("admin.reporters.sheet.performance", "Performance")}</h3>
               <div className="flex items-center gap-2 text-sm">
                 <FileVideo className="h-4 w-4 text-muted-foreground" />
-                <span><strong className="text-foreground">{reporter.newsSubmissionCount}</strong> News Submissions</span>
+                <span><strong className="text-foreground">{reporter.newsSubmissionCount}</strong> {t("admin.reporters.sheet.newsSubmissions", "News Submissions")}</span>
               </div>
               <div className="flex items-center gap-2 text-sm">
                 <IndianRupee className="h-4 w-4 text-muted-foreground" />
-                <span><strong className="text-foreground">{reporter.earningsSummary}</strong> Total Earnings</span>
+                <span><strong className="text-foreground">{reporter.earningsSummary}</strong> {t("admin.reporters.sheet.totalEarnings", "Total Earnings")}</span>
               </div>
             </div>
             <div className="space-y-3">
-              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">Documents</h3>
+              <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">{t("admin.reporters.sheet.documents", "Documents")}</h3>
               <div className="text-sm space-y-2">
                 <div className="flex items-center justify-between p-2 rounded-md border bg-slate-50 dark:bg-slate-900/50">
                   <div className="flex items-center gap-2">
                     <FileText className="h-4 w-4 text-blue-500" />
-                    <span>Aadhaar Card</span>
+                    <span>{t("admin.reporters.sheet.aadhaarCard", "Aadhaar Card")}</span>
                   </div>
                   <Button variant="ghost" size="icon" className="h-6 w-6">
                     <Download className="h-3 w-3" />
@@ -165,7 +168,7 @@ export function ReporterDetailsSheet({ reporter, open, onOpenChange }: ReporterD
                 <div className="flex items-center justify-between p-2 rounded-md border bg-slate-50 dark:bg-slate-900/50">
                   <div className="flex items-center gap-2">
                     <FileText className="h-4 w-4 text-blue-500" />
-                    <span>Qualification Cert</span>
+                    <span>{t("admin.reporters.sheet.qualCert", "Qualification Cert")}</span>
                   </div>
                   <Button variant="ghost" size="icon" className="h-6 w-6">
                     <Download className="h-3 w-3" />
@@ -181,21 +184,21 @@ export function ReporterDetailsSheet({ reporter, open, onOpenChange }: ReporterD
           <div className="flex flex-wrap gap-3">
             {reporter.accountStatus === "Pending Approval" && (
               <>
-                <Button className="flex-1 bg-emerald-600 hover:bg-emerald-700">Approve Application</Button>
-                <Button variant="destructive" className="flex-1">Reject</Button>
+                <Button className="flex-1 bg-emerald-600 hover:bg-emerald-700">{t("admin.reporters.sheet.approveApp", "Approve Application")}</Button>
+                <Button variant="destructive" className="flex-1">{t("admin.reporters.sheet.reject", "Reject")}</Button>
               </>
             )}
             {reporter.accountStatus === "Active" && (
               <>
-                <Button variant="outline" className="flex-1">Suspend Account</Button>
-                <Button className="flex-1"><Download className="mr-2 h-4 w-4" /> Download Press ID</Button>
+                <Button variant="outline" className="flex-1">{t("admin.reporters.sheet.suspendAcct", "Suspend Account")}</Button>
+                <Button className="flex-1"><Download className="mr-2 h-4 w-4" /> {t("admin.reporters.sheet.dlPressIdBtn", "Download Press ID")}</Button>
               </>
             )}
             {reporter.accountStatus === "Suspended" && (
-              <Button className="flex-1">Reactivate Account</Button>
+              <Button className="flex-1">{t("admin.reporters.sheet.reactivateAcct", "Reactivate Account")}</Button>
             )}
             {reporter.accountStatus === "Expired" && (
-              <Button className="flex-1">Send Renewal Notice</Button>
+              <Button className="flex-1">{t("admin.reporters.sheet.sendRenewal", "Send Renewal Notice")}</Button>
             )}
           </div>
         </div>

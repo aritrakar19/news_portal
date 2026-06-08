@@ -1,5 +1,7 @@
 import { useState } from "react"
 import { Outlet, NavLink, useNavigate } from "react-router-dom"
+import { useTranslation } from "react-i18next"
+import { LanguageSwitcher } from "@/components/shared/LanguageSwitcher"
 import { 
   LayoutDashboard, 
   Users, 
@@ -16,19 +18,20 @@ import {
 } from "lucide-react"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet"
 
-const ADMIN_NAV = [
-  { name: "Dashboard", path: "/admin", icon: LayoutDashboard },
-  { name: "Reporters", path: "/admin/reporters", icon: Users },
-  { name: "News Approval", path: "/admin/news", icon: FileText },
-  { name: "Earnings", path: "/admin/earnings", icon: IndianRupee },
-  { name: "Wallet Requests", path: "/admin/wallet-requests", icon: Wallet },
-  { name: "Advertisements", path: "/admin/ads", icon: Megaphone },
-  { name: "System Users", path: "/admin/users", icon: ShieldCheck },
-  { name: "Settings", path: "/admin/settings", icon: Settings },
+const ADMIN_NAV_KEYS = [
+  { nameKey: "adminNav.dashboard", path: "/admin", icon: LayoutDashboard },
+  { nameKey: "adminNav.reporters", path: "/admin/reporters", icon: Users },
+  { nameKey: "adminNav.newsApproval", path: "/admin/news", icon: FileText },
+  { nameKey: "adminNav.earnings", path: "/admin/earnings", icon: IndianRupee },
+  { nameKey: "adminNav.walletRequests", path: "/admin/wallet-requests", icon: Wallet },
+  { nameKey: "adminNav.ads", path: "/admin/ads", icon: Megaphone },
+  { nameKey: "adminNav.users", path: "/admin/users", icon: ShieldCheck },
+  { nameKey: "adminNav.settings", path: "/admin/settings", icon: Settings },
 ]
 
 export function AdminDashboardLayout() {
   const navigate = useNavigate()
+  const { t } = useTranslation()
   const [isOpen, setIsOpen] = useState(false)
 
   const NavContent = () => (
@@ -36,13 +39,13 @@ export function AdminDashboardLayout() {
       <div className="p-6 border-b border-slate-800 shrink-0">
         <div className="flex items-center gap-2 mb-1">
           <div className="w-8 h-8 bg-blue-600 rounded flex items-center justify-center font-bold text-white font-heading">A</div>
-          <span className="font-heading font-black text-xl tracking-tight text-white">ADMIN</span>
+          <span className="font-heading font-black text-xl tracking-tight text-white">{t("admin.title")}</span>
         </div>
-        <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">PUBLIC NEWS 1</p>
+        <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">{t("admin.subtitle")}</p>
       </div>
       
       <nav className="flex-1 py-6 px-3 space-y-1 overflow-y-auto">
-        {ADMIN_NAV.map((item) => {
+        {ADMIN_NAV_KEYS.map((item) => {
           const Icon = item.icon
           return (
             <NavLink
@@ -59,7 +62,7 @@ export function AdminDashboardLayout() {
               }
             >
               <Icon className="w-5 h-5" />
-              {item.name}
+              {t(item.nameKey)}
             </NavLink>
           )
         })}
@@ -74,7 +77,7 @@ export function AdminDashboardLayout() {
           className="flex items-center gap-3 px-4 py-3 w-full text-left rounded-lg text-sm font-medium text-slate-400 hover:text-white hover:bg-slate-800 transition-colors"
         >
           <LogOut className="w-5 h-5" />
-          Exit Admin
+          {t("admin.exitAdmin")}
         </button>
       </div>
     </div>
@@ -110,13 +113,14 @@ export function AdminDashboardLayout() {
               <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
               <input 
                 type="text" 
-                placeholder="Search reporters, news, or IDs..." 
+                placeholder={t("admin.searchPlaceholder")} 
                 className="w-full bg-slate-100 dark:bg-slate-800 border-0 h-9 rounded-full pl-10 pr-4 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
               />
             </div>
           </div>
           
           <div className="flex items-center gap-4">
+            <LanguageSwitcher />
             <button className="relative p-2 text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white transition-colors">
               <Bell className="w-5 h-5" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-blue-600 rounded-full border border-white dark:border-slate-900"></span>

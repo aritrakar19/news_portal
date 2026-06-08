@@ -16,8 +16,11 @@ import { SeoTab } from "./tabs/SeoTab"
 import { RolesPermissionsTab } from "./tabs/RolesPermissionsTab"
 import { IntegrationsTab } from "./tabs/IntegrationsTab"
 import { SettingsActivityLog } from "./components/SettingsActivityLog"
+import { useTranslation } from "react-i18next"
 
 export function AdminSettingsPage() {
+  const { t } = useTranslation()
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -44,17 +47,17 @@ export function AdminSettingsPage() {
     >
       <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">Platform Settings</h1>
+          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{t("admin.settings.title", "Platform Settings")}</h1>
           <p className="text-muted-foreground mt-2 max-w-2xl">
-            System configuration center. Control branding, onboarding, security, and external integrations.
+            {t("admin.settings.subtitle", "System configuration center. Control branding, onboarding, security, and external integrations.")}
           </p>
         </div>
         <div className="flex gap-3">
           <Button variant="outline" className="hidden sm:flex text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/50">
-            <RotateCcw className="mr-2 h-4 w-4" /> Reset Defaults
+            <RotateCcw className="mr-2 h-4 w-4" /> {t("admin.settings.resetDefaults", "Reset Defaults")}
           </Button>
           <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-            <Save className="mr-2 h-4 w-4" /> Save Changes
+            <Save className="mr-2 h-4 w-4" /> {t("admin.settings.saveChanges", "Save Changes")}
           </Button>
         </div>
       </motion.div>
@@ -66,34 +69,34 @@ export function AdminSettingsPage() {
             <div className="overflow-x-auto pb-2 mb-4 scrollbar-hide">
               <TabsList className="w-max inline-flex justify-start h-12 p-1 gap-1 bg-slate-100 dark:bg-slate-900 border">
                 <TabsTrigger value="general" className="gap-2 py-2 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950">
-                <Settings className="h-4 w-4" /> General
+                <Settings className="h-4 w-4" /> {t("admin.settings.tabs.general", "General")}
               </TabsTrigger>
               <TabsTrigger value="branding" className="gap-2 py-2 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950">
-                <Palette className="h-4 w-4" /> Branding
+                <Palette className="h-4 w-4" /> {t("admin.settings.tabs.branding", "Branding")}
               </TabsTrigger>
               <TabsTrigger value="reporter" className="gap-2 py-2 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950">
-                <Users className="h-4 w-4" /> Reporter
+                <Users className="h-4 w-4" /> {t("admin.settings.tabs.reporter", "Reporter")}
               </TabsTrigger>
               <TabsTrigger value="press-id" className="gap-2 py-2 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950">
-                <BadgeIcon className="h-4 w-4" /> Press ID
+                <BadgeIcon className="h-4 w-4" /> {t("admin.settings.tabs.pressId", "Press ID")}
               </TabsTrigger>
               <TabsTrigger value="payments" className="gap-2 py-2 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950">
-                <CreditCard className="h-4 w-4" /> Payments
+                <CreditCard className="h-4 w-4" /> {t("admin.settings.tabs.payments", "Payments")}
               </TabsTrigger>
               <TabsTrigger value="notifications" className="gap-2 py-2 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950">
-                <Bell className="h-4 w-4" /> Notifications
+                <Bell className="h-4 w-4" /> {t("admin.settings.tabs.notifications", "Notifications")}
               </TabsTrigger>
               <TabsTrigger value="security" className="gap-2 py-2 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950">
-                <Shield className="h-4 w-4" /> Security
+                <Shield className="h-4 w-4" /> {t("admin.settings.tabs.security", "Security")}
               </TabsTrigger>
               <TabsTrigger value="seo" className="gap-2 py-2 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950">
-                <Search className="h-4 w-4" /> SEO
+                <Search className="h-4 w-4" /> {t("admin.settings.tabs.seo", "SEO")}
               </TabsTrigger>
               <TabsTrigger value="roles" className="gap-2 py-2 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950">
-                <Lock className="h-4 w-4" /> Roles (RBAC)
+                <Lock className="h-4 w-4" /> {t("admin.settings.tabs.roles", "Roles (RBAC)")}
               </TabsTrigger>
               <TabsTrigger value="integrations" className="gap-2 py-2 data-[state=active]:bg-white dark:data-[state=active]:bg-slate-950">
-                <LinkIcon className="h-4 w-4" /> Integrations
+                <LinkIcon className="h-4 w-4" /> {t("admin.settings.tabs.integrations", "Integrations")}
               </TabsTrigger>
             </TabsList>
             </div>
@@ -119,28 +122,28 @@ export function AdminSettingsPage() {
           
           <div className="bg-slate-50 dark:bg-slate-900 border border-border rounded-xl p-5 shadow-sm">
             <h3 className="text-sm font-semibold flex items-center gap-2 mb-4">
-              <Server className="h-4 w-4 text-slate-500" /> System Information
+              <Server className="h-4 w-4 text-slate-500" /> {t("admin.settings.systemInfo", "System Information")}
             </h3>
             <div className="space-y-3 text-sm">
               <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Version</span>
+                <span className="text-muted-foreground">{t("admin.settings.version", "Version")}</span>
                 <span className="font-mono font-medium">v2.4.1-stable</span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Build</span>
+                <span className="text-muted-foreground">{t("admin.settings.build", "Build")}</span>
                 <span className="font-mono font-medium text-xs">a9f84b2</span>
               </div>
               <Separator />
               <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Server Status</span>
+                <span className="text-muted-foreground">{t("admin.settings.serverStatus", "Server Status")}</span>
                 <span className="flex items-center gap-1.5 text-emerald-600 dark:text-emerald-400 font-medium">
                   <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                  Operational
+                  {t("admin.settings.operational", "Operational")}
                 </span>
               </div>
               <div className="flex justify-between items-center">
-                <span className="text-muted-foreground">Last Backup</span>
-                <span>Today, 04:00 AM</span>
+                <span className="text-muted-foreground">{t("admin.settings.lastBackup", "Last Backup")}</span>
+                <span>{t("admin.settings.today", "Today")}, 04:00 AM</span>
               </div>
             </div>
           </div>

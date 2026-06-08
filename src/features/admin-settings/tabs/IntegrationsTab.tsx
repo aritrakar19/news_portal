@@ -3,8 +3,10 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { mockIntegrations } from "../data/mockSettings"
 import { BarChart3, Presentation, MonitorPlay, Database, MessageCircle } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function IntegrationsTab() {
+  const { t } = useTranslation()
   const getIcon = (name: string) => {
     switch (name) {
       case "Analytics": return <BarChart3 className="h-6 w-6 text-orange-500" />
@@ -20,10 +22,10 @@ export function IntegrationsTab() {
     <div className="space-y-6 max-w-5xl">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-heading font-bold">Connected Services</h3>
-          <p className="text-sm text-muted-foreground">Manage third-party API connections and external services.</p>
+          <h3 className="text-lg font-heading font-bold">{t("admin.settings.integrations.title", "Connected Services")}</h3>
+          <p className="text-sm text-muted-foreground">{t("admin.settings.integrations.subtitle", "Manage third-party API connections and external services.")}</p>
         </div>
-        <Button>Add Integration</Button>
+        <Button>{t("admin.settings.integrations.add", "Add Integration")}</Button>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -34,9 +36,9 @@ export function IntegrationsTab() {
                 {getIcon(integration.icon)}
               </div>
               {integration.status === "Connected" ? (
-                <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 border-0">Connected</Badge>
+                <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 border-0">{t("admin.settings.integrations.connected", "Connected")}</Badge>
               ) : (
-                <Badge variant="outline" className="text-slate-500">Disconnected</Badge>
+                <Badge variant="outline" className="text-slate-500">{t("admin.settings.integrations.disconnected", "Disconnected")}</Badge>
               )}
             </CardHeader>
             <CardContent className="flex-1 flex flex-col justify-between">
@@ -46,9 +48,9 @@ export function IntegrationsTab() {
               </div>
               <div className="mt-6">
                 {integration.status === "Connected" ? (
-                  <Button variant="outline" className="w-full text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/50">Disconnect</Button>
+                  <Button variant="outline" className="w-full text-rose-600 hover:text-rose-700 hover:bg-rose-50 dark:hover:bg-rose-950/50">{t("admin.settings.integrations.disconnect", "Disconnect")}</Button>
                 ) : (
-                  <Button variant="default" className="w-full">Configure</Button>
+                  <Button variant="default" className="w-full">{t("admin.settings.integrations.configure", "Configure")}</Button>
                 )}
               </div>
             </CardContent>

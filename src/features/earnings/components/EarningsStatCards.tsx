@@ -1,41 +1,44 @@
 import { Wallet, Landmark, Clock, ArrowDownToLine } from "lucide-react"
-
-const STATS = [
-  {
-    title: "Total Earnings",
-    value: "₹45,200",
-    subtitle: "Lifetime revenue",
-    icon: Landmark,
-    color: "text-blue-600 dark:text-blue-400",
-    bg: "bg-blue-100 dark:bg-blue-900/30",
-  },
-  {
-    title: "Pending Earnings",
-    value: "₹4,250",
-    subtitle: "In review process",
-    icon: Clock,
-    color: "text-amber-600 dark:text-amber-400",
-    bg: "bg-amber-100 dark:bg-amber-900/30",
-  },
-  {
-    title: "Withdrawn Amount",
-    value: "₹28,550",
-    subtitle: "Successfully transferred",
-    icon: ArrowDownToLine,
-    color: "text-emerald-600 dark:text-emerald-400",
-    bg: "bg-emerald-100 dark:bg-emerald-900/30",
-  },
-  {
-    title: "Wallet Balance",
-    value: "₹12,400",
-    subtitle: "Available to withdraw",
-    icon: Wallet,
-    color: "text-purple-600 dark:text-purple-400",
-    bg: "bg-purple-100 dark:bg-purple-900/30",
-  },
-]
+import { useTranslation } from "react-i18next"
 
 export function EarningsStatCards() {
+  const { t } = useTranslation()
+
+  const STATS = [
+    {
+      title: t("earnings.stats.total", "Total Earnings"),
+      value: "₹45,200",
+      subtitle: t("earnings.stats.totalSub", "Lifetime revenue"),
+      icon: Landmark,
+      color: "text-blue-600 dark:text-blue-400",
+      bg: "bg-blue-100 dark:bg-blue-900/30",
+    },
+    {
+      title: t("earnings.stats.pending", "Pending Earnings"),
+      value: "₹4,250",
+      subtitle: t("earnings.stats.pendingSub", "In review process"),
+      icon: Clock,
+      color: "text-amber-600 dark:text-amber-400",
+      bg: "bg-amber-100 dark:bg-amber-900/30",
+    },
+    {
+      title: t("earnings.stats.withdrawn", "Withdrawn Amount"),
+      value: "₹28,550",
+      subtitle: t("earnings.stats.withdrawnSub", "Successfully transferred"),
+      icon: ArrowDownToLine,
+      color: "text-emerald-600 dark:text-emerald-400",
+      bg: "bg-emerald-100 dark:bg-emerald-900/30",
+    },
+    {
+      title: t("earnings.stats.wallet", "Wallet Balance"),
+      value: "₹12,400",
+      subtitle: t("earnings.stats.walletSub", "Available to withdraw"),
+      icon: Wallet,
+      color: "text-purple-600 dark:text-purple-400",
+      bg: "bg-purple-100 dark:bg-purple-900/30",
+    },
+  ]
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
       {STATS.map((stat, idx) => {

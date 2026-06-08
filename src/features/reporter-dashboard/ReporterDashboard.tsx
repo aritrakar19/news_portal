@@ -8,6 +8,7 @@ import { RecentEarningsTable } from "./components/RecentEarningsTable"
 import { ReferralPerformanceCard } from "./components/ReferralPerformanceCard"
 import { ProfileCompletionCard } from "./components/ProfileCompletionCard"
 import { WalletSummaryCard } from "./components/WalletSummaryCard"
+import { useTranslation } from "react-i18next"
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -23,6 +24,8 @@ const itemVariants: Variants = {
 }
 
 export function ReporterDashboard() {
+  const { t } = useTranslation()
+
   return (
     <motion.div 
       className="space-y-6 pb-12"
@@ -32,8 +35,8 @@ export function ReporterDashboard() {
     >
       <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-2">
         <div>
-          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">Overview</h1>
-          <p className="text-muted-foreground mt-1">Welcome back, Aritra. Here's what's happening with your stories today.</p>
+          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{t("dashboard.overview", "Overview")}</h1>
+          <p className="text-muted-foreground mt-1">{t("dashboard.welcome", "Welcome back, Aritra. Here's what's happening with your stories today.")}</p>
         </div>
       </motion.div>
 

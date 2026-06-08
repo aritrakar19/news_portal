@@ -11,6 +11,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { User, Mail, Phone, MapPin, Calendar, Clock, Activity, IndianRupee, Users, ShieldAlert, CheckCircle2, XCircle } from "lucide-react"
 import type { SystemUser } from "../data/mockUsers"
+import { useTranslation } from "react-i18next"
 
 interface UserDetailsSheetProps {
   user: SystemUser | null
@@ -19,14 +20,16 @@ interface UserDetailsSheetProps {
 }
 
 export function UserDetailsSheet({ user, open, onOpenChange }: UserDetailsSheetProps) {
+  const { t } = useTranslation()
+
   if (!user) return null
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case "Active": return <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400">Active</Badge>
-      case "Pending": return <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400">Pending</Badge>
-      case "Suspended": return <Badge className="bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-900/30 dark:text-amber-400">Suspended</Badge>
-      case "Blocked": return <Badge className="bg-rose-100 text-rose-800 hover:bg-rose-100 dark:bg-rose-900/30 dark:text-rose-400">Blocked</Badge>
+      case "Active": return <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400">{t("admin.users.table.statusActive", "Active")}</Badge>
+      case "Pending": return <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400">{t("admin.users.table.statusPending", "Pending")}</Badge>
+      case "Suspended": return <Badge className="bg-amber-100 text-amber-800 hover:bg-amber-100 dark:bg-amber-900/30 dark:text-amber-400">{t("admin.users.table.statusSuspended", "Suspended")}</Badge>
+      case "Blocked": return <Badge className="bg-rose-100 text-rose-800 hover:bg-rose-100 dark:bg-rose-900/30 dark:text-rose-400">{t("admin.users.table.statusBlocked", "Blocked")}</Badge>
       default: return <Badge variant="secondary">{status}</Badge>
     }
   }
@@ -48,7 +51,7 @@ export function UserDetailsSheet({ user, open, onOpenChange }: UserDetailsSheetP
         <div className="p-6 bg-slate-50 dark:bg-slate-900 border-b relative">
           <SheetHeader className="text-left mb-6">
             <div className="flex justify-between items-start">
-              <SheetTitle>User Profile</SheetTitle>
+              <SheetTitle>{t("admin.users.sheet.title", "User Profile")}</SheetTitle>
               {getStatusBadge(user.status)}
             </div>
           </SheetHeader>
@@ -70,7 +73,7 @@ export function UserDetailsSheet({ user, open, onOpenChange }: UserDetailsSheetP
           {/* Contact Information */}
           <div>
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4 flex items-center gap-2">
-              <User className="h-4 w-4" /> Contact Information
+              <User className="h-4 w-4" /> {t("admin.users.sheet.contactInfo", "Contact Information")}
             </h3>
             <div className="space-y-3 text-sm">
               <div className="flex items-center gap-3">
@@ -93,28 +96,28 @@ export function UserDetailsSheet({ user, open, onOpenChange }: UserDetailsSheetP
           {/* Account Metrics */}
           <div>
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4 flex items-center gap-2">
-              <Activity className="h-4 w-4" /> Platform Activity
+              <Activity className="h-4 w-4" /> {t("admin.users.sheet.platformActivity", "Platform Activity")}
             </h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3 border">
-                <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1"><Activity className="h-3 w-3" /> News</p>
+                <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1"><Activity className="h-3 w-3" /> {t("admin.users.sheet.news", "News")}</p>
                 <p className="text-lg font-bold">{user.activity.totalNewsSubmitted}</p>
               </div>
               <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3 border">
-                <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1"><IndianRupee className="h-3 w-3" /> Earnings</p>
+                <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1"><IndianRupee className="h-3 w-3" /> {t("admin.users.sheet.earnings", "Earnings")}</p>
                 <p className="text-lg font-bold text-emerald-600">₹{user.activity.totalEarnings.toLocaleString()}</p>
               </div>
               <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3 border">
-                <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1"><Users className="h-3 w-3" /> Referrals</p>
+                <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1"><Users className="h-3 w-3" /> {t("admin.users.sheet.referrals", "Referrals")}</p>
                 <p className="text-lg font-bold text-blue-600">{user.activity.referralCount}</p>
               </div>
               <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-3 border">
-                <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1"><Calendar className="h-3 w-3" /> Joined</p>
+                <p className="text-xs text-muted-foreground flex items-center gap-1 mb-1"><Calendar className="h-3 w-3" /> {t("admin.users.sheet.joined", "Joined")}</p>
                 <p className="text-sm font-semibold mt-1">{new Date(user.registrationDate).toLocaleDateString()}</p>
               </div>
             </div>
             <div className="flex items-center gap-2 text-xs text-muted-foreground mt-4">
-               <Clock className="h-3 w-3" /> Last login: {new Date(user.lastLogin).toLocaleString()}
+               <Clock className="h-3 w-3" /> {t("admin.users.sheet.lastLogin", "Last login")}: {new Date(user.lastLogin).toLocaleString()}
             </div>
           </div>
 
@@ -123,41 +126,41 @@ export function UserDetailsSheet({ user, open, onOpenChange }: UserDetailsSheetP
           {/* Role & Permissions Management */}
           <div>
             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4 flex items-center gap-2">
-              <ShieldAlert className="h-4 w-4" /> Role & Permissions
+              <ShieldAlert className="h-4 w-4" /> {t("admin.users.sheet.rolePermissions", "Role & Permissions")}
             </h3>
             
             <div className="space-y-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium">Assigned Role</label>
+                <label className="text-sm font-medium">{t("admin.users.sheet.assignedRole", "Assigned Role")}</label>
                 <Select defaultValue={user.role.toLowerCase().replace(' ', '-')}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="super-admin">Super Admin</SelectItem>
-                    <SelectItem value="admin">Admin</SelectItem>
-                    <SelectItem value="editor">Editor</SelectItem>
-                    <SelectItem value="reporter">Reporter</SelectItem>
-                    <SelectItem value="viewer">Viewer</SelectItem>
+                    <SelectItem value="super-admin">{t("admin.users.table.roleSuperAdmin", "Super Admin")}</SelectItem>
+                    <SelectItem value="admin">{t("admin.users.table.roleAdmin", "Admin")}</SelectItem>
+                    <SelectItem value="editor">{t("admin.users.table.roleEditor", "Editor")}</SelectItem>
+                    <SelectItem value="reporter">{t("admin.users.table.roleReporter", "Reporter")}</SelectItem>
+                    <SelectItem value="viewer">{t("admin.users.table.roleViewer", "Viewer")}</SelectItem>
                   </SelectContent>
                 </Select>
-                <p className="text-xs text-muted-foreground">Changing the role will immediately alter the user's access.</p>
+                <p className="text-xs text-muted-foreground">{t("admin.users.sheet.roleChangeNotice", "Changing the role will immediately alter the user's access.")}</p>
               </div>
 
               <div className="bg-slate-50 dark:bg-slate-900 rounded-lg p-4 border mt-4">
-                <p className="text-xs font-semibold text-muted-foreground mb-3">CURRENT ACCESS RIGHTS</p>
-                <PermissionRow label="News Management" isGranted={user.permissions.newsManagement} />
-                <PermissionRow label="Reporter Management" isGranted={user.permissions.reporterManagement} />
-                <PermissionRow label="Earnings Management" isGranted={user.permissions.earningsManagement} />
-                <PermissionRow label="Advertisement Management" isGranted={user.permissions.adsManagement} />
-                <PermissionRow label="Platform Settings Access" isGranted={user.permissions.settingsAccess} />
+                <p className="text-xs font-semibold text-muted-foreground mb-3">{t("admin.users.sheet.currentAccess", "CURRENT ACCESS RIGHTS")}</p>
+                <PermissionRow label={t("admin.users.sheet.newsManagement", "News Management")} isGranted={user.permissions.newsManagement} />
+                <PermissionRow label={t("admin.users.sheet.reporterManagement", "Reporter Management")} isGranted={user.permissions.reporterManagement} />
+                <PermissionRow label={t("admin.users.sheet.earningsManagement", "Earnings Management")} isGranted={user.permissions.earningsManagement} />
+                <PermissionRow label={t("admin.users.sheet.adsManagement", "Advertisement Management")} isGranted={user.permissions.adsManagement} />
+                <PermissionRow label={t("admin.users.sheet.settingsAccess", "Platform Settings Access")} isGranted={user.permissions.settingsAccess} />
               </div>
             </div>
           </div>
           
           <div className="flex gap-3 pt-4">
-            <Button variant="outline" className="flex-1" onClick={() => onOpenChange(false)}>Cancel</Button>
-            <Button className="flex-1 bg-blue-600 hover:bg-blue-700">Save Changes</Button>
+            <Button variant="outline" className="flex-1" onClick={() => onOpenChange(false)}>{t("admin.users.sheet.cancel", "Cancel")}</Button>
+            <Button className="flex-1 bg-blue-600 hover:bg-blue-700">{t("admin.users.sheet.saveChanges", "Save Changes")}</Button>
           </div>
         </div>
       </SheetContent>

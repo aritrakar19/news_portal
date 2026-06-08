@@ -1,58 +1,61 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { FileText, Clock, CheckCircle2, XCircle, Send, Zap } from "lucide-react"
-
-const stats = [
-  {
-    title: "Total Submitted",
-    value: "14,592",
-    icon: FileText,
-    description: "+324 this week",
-    color: "text-blue-500",
-    bg: "bg-blue-500/10",
-  },
-  {
-    title: "Pending Review",
-    value: "128",
-    icon: Clock,
-    description: "Requires attention",
-    color: "text-amber-500",
-    bg: "bg-amber-500/10",
-  },
-  {
-    title: "Approved",
-    value: "12,104",
-    icon: CheckCircle2,
-    description: "Ready to publish",
-    color: "text-emerald-500",
-    bg: "bg-emerald-500/10",
-  },
-  {
-    title: "Rejected",
-    value: "412",
-    icon: XCircle,
-    description: "Failed guidelines",
-    color: "text-rose-500",
-    bg: "bg-rose-500/10",
-  },
-  {
-    title: "Published Today",
-    value: "84",
-    icon: Send,
-    description: "Live on platform",
-    color: "text-indigo-500",
-    bg: "bg-indigo-500/10",
-  },
-  {
-    title: "Breaking Requests",
-    value: "3",
-    icon: Zap,
-    description: "High priority",
-    color: "text-orange-500",
-    bg: "bg-orange-500/10",
-  },
-]
+import { useTranslation } from "react-i18next"
 
 export function NewsStatsCards() {
+  const { t } = useTranslation()
+
+  const stats = [
+    {
+      title: t("admin.news.stats.total", "Total Submitted"),
+      value: "14,592",
+      icon: FileText,
+      description: t("admin.news.stats.totalDesc", "+324 this week"),
+      color: "text-blue-500",
+      bg: "bg-blue-500/10",
+    },
+    {
+      title: t("admin.news.stats.pending", "Pending Review"),
+      value: "128",
+      icon: Clock,
+      description: t("admin.news.stats.pendingDesc", "Requires attention"),
+      color: "text-amber-500",
+      bg: "bg-amber-500/10",
+    },
+    {
+      title: t("admin.news.stats.approved", "Approved"),
+      value: "12,104",
+      icon: CheckCircle2,
+      description: t("admin.news.stats.approvedDesc", "Ready to publish"),
+      color: "text-emerald-500",
+      bg: "bg-emerald-500/10",
+    },
+    {
+      title: t("admin.news.stats.rejected", "Rejected"),
+      value: "412",
+      icon: XCircle,
+      description: t("admin.news.stats.rejectedDesc", "Failed guidelines"),
+      color: "text-rose-500",
+      bg: "bg-rose-500/10",
+    },
+    {
+      title: t("admin.news.stats.publishedToday", "Published Today"),
+      value: "84",
+      icon: Send,
+      description: t("admin.news.stats.publishedTodayDesc", "Live on platform"),
+      color: "text-indigo-500",
+      bg: "bg-indigo-500/10",
+    },
+    {
+      title: t("admin.news.stats.breaking", "Breaking Requests"),
+      value: "3",
+      icon: Zap,
+      description: t("admin.news.stats.breakingDesc", "High priority"),
+      color: "text-orange-500",
+      bg: "bg-orange-500/10",
+    },
+  ]
+
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {stats.map((stat) => {

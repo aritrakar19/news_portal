@@ -2,6 +2,7 @@ import { useFormContext } from "react-hook-form"
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { useTranslation } from "react-i18next"
 import type { RegistrationFormValues } from "../../schema"
 
 const STATES = [
@@ -14,12 +15,13 @@ const QUALIFICATIONS = [
 
 export function StepLocation() {
   const form = useFormContext<RegistrationFormValues>()
+  const { t } = useTranslation()
 
   return (
     <div className="space-y-6 animate-fade-in">
       <div className="mb-6">
-        <h3 className="text-xl font-heading font-bold text-slate-900 dark:text-white">Location & Qualifications</h3>
-        <p className="text-sm text-muted-foreground">Select the region you will be reporting from.</p>
+        <h3 className="text-xl font-heading font-bold text-slate-900 dark:text-white">{t("registration.location.title", "Location & Qualifications")}</h3>
+        <p className="text-sm text-muted-foreground">{t("registration.location.subtitle", "Select the region you will be reporting from.")}</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -28,11 +30,11 @@ export function StepLocation() {
           name="state"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>State</FormLabel>
+              <FormLabel>{t("registration.location.state", "State")}</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select a state" />
+                    <SelectValue placeholder={t("registration.location.statePlaceholder", "Select a state")} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -51,9 +53,9 @@ export function StepLocation() {
           name="district"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>District/City</FormLabel>
+              <FormLabel>{t("registration.location.district", "District/City")}</FormLabel>
               <FormControl>
-                <Input placeholder="E.g., Mumbai" {...field} />
+                <Input placeholder={t("registration.location.districtPlaceholder", "E.g., Mumbai")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -65,9 +67,9 @@ export function StepLocation() {
           name="address"
           render={({ field }) => (
             <FormItem className="md:col-span-2">
-              <FormLabel>Full Residential Address</FormLabel>
+              <FormLabel>{t("registration.location.address", "Full Residential Address")}</FormLabel>
               <FormControl>
-                <Input placeholder="House No, Street, Landmark, Pincode" {...field} />
+                <Input placeholder={t("registration.location.addressPlaceholder", "House No, Street, Landmark, Pincode")} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -79,11 +81,11 @@ export function StepLocation() {
           name="qualification"
           render={({ field }) => (
             <FormItem className="md:col-span-2">
-              <FormLabel>Highest Qualification</FormLabel>
+              <FormLabel>{t("registration.location.qualification", "Highest Qualification")}</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="Select your highest qualification" />
+                    <SelectValue placeholder={t("registration.location.qualificationPlaceholder", "Select your highest qualification")} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>

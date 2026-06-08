@@ -15,6 +15,7 @@ import {
   DollarSign,
   Activity
 } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -166,6 +167,8 @@ const BUSINESS_GRID = [
 ]
 
 export function BusinessPage() {
+  const { t } = useTranslation()
+
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pb-16 font-sans">
       
@@ -174,7 +177,7 @@ export function BusinessPage() {
         <div className="container mx-auto px-4 max-w-7xl overflow-x-auto hide-scrollbar">
           <div className="flex items-center gap-6 py-3 min-w-max">
             <div className="font-bold text-slate-400 text-sm uppercase tracking-wider border-r border-slate-700 pr-4 shrink-0 flex items-center gap-2">
-              <Activity className="h-4 w-4" /> Market Watch
+              <Activity className="h-4 w-4" /> {t("business.marketWatch", "Market Watch")}
             </div>
             {MARKET_SNAPSHOT.map((item, index) => (
               <div key={index} className="flex flex-col shrink-0 pr-6 border-r border-slate-800 last:border-0">
@@ -198,12 +201,12 @@ export function BusinessPage() {
         <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between border-b-2 border-slate-200 dark:border-slate-800 pb-4 gap-4">
           <div>
             <h1 className="text-4xl md:text-5xl font-black font-heading tracking-tight text-slate-900 dark:text-white uppercase flex items-center gap-3">
-              Business <DollarSign className="h-8 w-8 text-blue-600 hidden md:block" />
+              {t("business.title", "Business")} <DollarSign className="h-8 w-8 text-blue-600 hidden md:block" />
             </h1>
-            <p className="text-muted-foreground mt-1 text-sm font-medium">Markets, Economy & Corporate Intelligence</p>
+            <p className="text-muted-foreground mt-1 text-sm font-medium">{t("business.subtitle", "Markets, Economy & Corporate Intelligence")}</p>
           </div>
           <div className="flex items-center gap-4">
-            <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Markets open</div>
+            <div className="text-xs font-bold uppercase tracking-wider text-muted-foreground">{t("business.marketsOpen", "Markets open")}</div>
             <div className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></div>
           </div>
         </div>
@@ -240,7 +243,7 @@ export function BusinessPage() {
                     <span className="flex items-center gap-1.5"><Clock className="h-4 w-4" /> {HERO_STORY.time}</span>
                   </div>
                   <Button className="bg-blue-600 text-white hover:bg-blue-700 rounded-sm font-bold group-hover:translate-x-1 transition-transform">
-                    Full Coverage <ArrowRight className="ml-2 h-4 w-4" />
+                    {t("business.fullCoverage", "Full Coverage")} <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
               </div>
@@ -252,7 +255,7 @@ export function BusinessPage() {
             <Card className="border-border shadow-sm flex-1 bg-white dark:bg-slate-900 rounded-xl overflow-hidden">
               <CardHeader className="bg-slate-50 dark:bg-slate-950 border-b border-border py-4">
                 <CardTitle className="text-lg font-bold font-heading uppercase text-slate-900 dark:text-white flex items-center gap-2">
-                  <LineChart className="h-5 w-5 text-blue-600" /> Executive Briefing
+                  <LineChart className="h-5 w-5 text-blue-600" /> {t("business.execBriefing", "Executive Briefing")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="p-0">
@@ -276,7 +279,7 @@ export function BusinessPage() {
                 </div>
                 <div className="p-4 bg-slate-50 dark:bg-slate-950 border-t border-border text-center mt-auto">
                   <Button variant="link" className="text-xs font-bold text-blue-600 uppercase tracking-widest">
-                    All Latest News <ChevronRight className="h-3 w-3 ml-1" />
+                    {t("business.allLatest", "All Latest News")} <ChevronRight className="h-3 w-3 ml-1" />
                   </Button>
                 </div>
               </CardContent>
@@ -292,7 +295,7 @@ export function BusinessPage() {
             <div className="mb-6 border-b-2 border-slate-200 dark:border-slate-800 pb-2 flex items-center gap-2">
               <Rocket className="h-6 w-6 text-orange-500" />
               <h3 className="text-2xl font-bold font-heading uppercase text-slate-900 dark:text-white">
-                Startups & Tech
+                {t("business.startups", "Startups & Tech")}
               </h3>
             </div>
             <div className="space-y-6">
@@ -319,7 +322,7 @@ export function BusinessPage() {
             <div className="mb-6 border-b-2 border-slate-200 dark:border-slate-800 pb-2 flex items-center gap-2">
               <Building2 className="h-6 w-6 text-indigo-600" />
               <h3 className="text-2xl font-bold font-heading uppercase text-slate-900 dark:text-white">
-                Corporate India
+                {t("business.corporate", "Corporate India")}
               </h3>
             </div>
             <div className="space-y-6">
@@ -347,12 +350,12 @@ export function BusinessPage() {
           <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 gap-4 border-b border-slate-800 pb-4">
             <div>
               <h3 className="text-2xl font-bold font-heading uppercase flex items-center gap-2">
-                <PlayCircle className="h-6 w-6 text-blue-500" /> Bloomberg Style TV
+                <PlayCircle className="h-6 w-6 text-blue-500" /> {t("business.videoTitle", "Bloomberg Style TV")}
               </h3>
-              <p className="text-slate-400 text-sm mt-1">Live market coverage and expert interviews</p>
+              <p className="text-slate-400 text-sm mt-1">{t("business.videoDesc", "Live market coverage and expert interviews")}</p>
             </div>
             <Button variant="outline" className="text-sm font-medium border-slate-700 bg-slate-800 hover:bg-slate-700 text-white">
-              Watch Live <ChevronRight className="h-4 w-4 ml-1" />
+              {t("business.watchLive", "Watch Live")} <ChevronRight className="h-4 w-4 ml-1" />
             </Button>
           </div>
           
@@ -390,7 +393,7 @@ export function BusinessPage() {
           <div className="flex items-center justify-between mb-8 border-b-2 border-slate-200 dark:border-slate-800 pb-2">
             <h3 className="text-2xl font-bold font-heading uppercase text-slate-900 dark:text-white flex items-center gap-2">
               <Briefcase className="h-6 w-6 text-slate-700 dark:text-slate-400" /> 
-              More Business News
+              {t("business.moreNews", "More Business News")}
             </h3>
           </div>
           
@@ -424,7 +427,7 @@ export function BusinessPage() {
 
           <div className="mt-12 text-center">
             <Button variant="outline" className="rounded-sm px-8 py-6 font-bold text-base border-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-              Load More Market News
+              {t("business.loadMore", "Load More Market News")}
             </Button>
           </div>
         </div>
@@ -434,9 +437,9 @@ export function BusinessPage() {
       <div className="bg-blue-900 text-white py-16 border-t-4 border-blue-500">
         <div className="container mx-auto px-4 max-w-5xl flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex-1 text-center md:text-left">
-            <h2 className="text-3xl md:text-4xl font-bold font-heading mb-3 text-white">The Daily Market Open</h2>
+            <h2 className="text-3xl md:text-4xl font-bold font-heading mb-3 text-white">{t("business.subscribeTitle", "The Daily Market Open")}</h2>
             <p className="text-blue-200 max-w-xl mx-auto md:mx-0 text-lg">
-              Expert financial analysis, pre-market briefs, and corporate insights delivered before the bell rings.
+              {t("business.subscribeDesc", "Expert financial analysis, pre-market briefs, and corporate insights delivered before the bell rings.")}
             </p>
           </div>
           <form className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
@@ -444,13 +447,13 @@ export function BusinessPage() {
               <Mail className="absolute left-3 top-3 h-5 w-5 text-blue-300" />
               <Input 
                 type="email" 
-                placeholder="Enter your email" 
+                placeholder={t("business.emailPlaceholder", "Enter your email")} 
                 className="bg-blue-950 border-blue-800 text-white placeholder:text-blue-400 pl-10 h-12 w-full sm:w-72" 
                 required
               />
             </div>
             <Button type="button" className="bg-blue-500 hover:bg-blue-400 text-white font-bold h-12 px-8">
-              Subscribe Free
+              {t("business.subscribeBtn", "Subscribe Free")}
             </Button>
           </form>
         </div>

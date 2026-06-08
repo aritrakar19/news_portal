@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { MoreHorizontal, Eye, CheckCircle, XCircle, Download, Ban } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 interface ReportersTableProps {
   reporters: Reporter[]
@@ -26,6 +27,8 @@ interface ReportersTableProps {
 }
 
 export function ReportersTable({ reporters, onViewProfile }: ReportersTableProps) {
+  const { t } = useTranslation()
+
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Active": return "bg-emerald-100 text-emerald-800 dark:bg-emerald-900/30 dark:text-emerald-400"
@@ -43,20 +46,20 @@ export function ReportersTable({ reporters, onViewProfile }: ReportersTableProps
       <Table>
         <TableHeader>
           <TableRow>
-            <TableHead>Profile</TableHead>
-            <TableHead>Reporter Info</TableHead>
-            <TableHead>Location</TableHead>
-            <TableHead>Registration</TableHead>
-            <TableHead>Press ID</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead>{t("admin.reporters.table.profile", "Profile")}</TableHead>
+            <TableHead>{t("admin.reporters.table.reporterInfo", "Reporter Info")}</TableHead>
+            <TableHead>{t("admin.reporters.table.location", "Location")}</TableHead>
+            <TableHead>{t("admin.reporters.table.registration", "Registration")}</TableHead>
+            <TableHead>{t("admin.reporters.table.pressId", "Press ID")}</TableHead>
+            <TableHead>{t("admin.reporters.table.status", "Status")}</TableHead>
+            <TableHead className="text-right">{t("admin.reporters.table.actions", "Actions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {reporters.length === 0 ? (
             <TableRow>
               <TableCell colSpan={7} className="text-center h-24 text-muted-foreground">
-                No reporters found.
+                {t("admin.reporters.table.noReporters", "No reporters found.")}
               </TableCell>
             </TableRow>
           ) : (
@@ -99,34 +102,34 @@ export function ReportersTable({ reporters, onViewProfile }: ReportersTableProps
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-[160px]">
-                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                      <DropdownMenuLabel>{t("admin.reporters.table.actions", "Actions")}</DropdownMenuLabel>
                       <DropdownMenuItem onClick={() => onViewProfile(reporter)}>
-                        <Eye className="mr-2 h-4 w-4" /> View Profile
+                        <Eye className="mr-2 h-4 w-4" /> {t("admin.reporters.table.viewProfile", "View Profile")}
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       {reporter.accountStatus === "Pending Approval" && (
                         <>
                           <DropdownMenuItem className="text-emerald-600 dark:text-emerald-400">
-                            <CheckCircle className="mr-2 h-4 w-4" /> Approve
+                            <CheckCircle className="mr-2 h-4 w-4" /> {t("admin.reporters.table.approve", "Approve")}
                           </DropdownMenuItem>
                           <DropdownMenuItem className="text-rose-600 dark:text-rose-400">
-                            <XCircle className="mr-2 h-4 w-4" /> Reject
+                            <XCircle className="mr-2 h-4 w-4" /> {t("admin.reporters.table.reject", "Reject")}
                           </DropdownMenuItem>
                         </>
                       )}
                       {reporter.accountStatus === "Active" && (
                         <>
                           <DropdownMenuItem>
-                            <Download className="mr-2 h-4 w-4" /> DL Press ID
+                            <Download className="mr-2 h-4 w-4" /> {t("admin.reporters.table.dlPressId", "DL Press ID")}
                           </DropdownMenuItem>
                           <DropdownMenuItem className="text-rose-600 dark:text-rose-400">
-                            <Ban className="mr-2 h-4 w-4" /> Suspend
+                            <Ban className="mr-2 h-4 w-4" /> {t("admin.reporters.table.suspend", "Suspend")}
                           </DropdownMenuItem>
                         </>
                       )}
                       {reporter.accountStatus === "Suspended" && (
                         <DropdownMenuItem className="text-emerald-600 dark:text-emerald-400">
-                          <CheckCircle className="mr-2 h-4 w-4" /> Reactivate
+                          <CheckCircle className="mr-2 h-4 w-4" /> {t("admin.reporters.table.reactivate", "Reactivate")}
                         </DropdownMenuItem>
                       )}
                     </DropdownMenuContent>

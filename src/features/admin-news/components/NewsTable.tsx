@@ -19,6 +19,7 @@ import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { MoreHorizontal, Eye, Edit, CheckCircle, XCircle, FileWarning, Send } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 interface NewsTableProps {
   news: NewsStory[]
@@ -26,6 +27,8 @@ interface NewsTableProps {
 }
 
 export function NewsTable({ news, onViewStory }: NewsTableProps) {
+  const { t } = useTranslation()
+
   const getStatusBadge = (status: string) => {
     switch (status) {
       case "Published": return <Badge className="bg-blue-100 text-blue-800 hover:bg-blue-100 dark:bg-blue-900/30 dark:text-blue-400">Published</Badge>
@@ -49,20 +52,20 @@ export function NewsTable({ news, onViewStory }: NewsTableProps) {
         <TableHeader>
           <TableRow>
             <TableHead className="w-[10px]"></TableHead>
-            <TableHead>Story</TableHead>
-            <TableHead>Reporter</TableHead>
-            <TableHead>Category</TableHead>
-            <TableHead>Location</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="text-right">Actions</TableHead>
+            <TableHead>{t("admin.news.table.story", "Story")}</TableHead>
+            <TableHead>{t("admin.news.table.reporter", "Reporter")}</TableHead>
+            <TableHead>{t("admin.news.table.category", "Category")}</TableHead>
+            <TableHead>{t("admin.news.table.location", "Location")}</TableHead>
+            <TableHead>{t("admin.news.table.date", "Date")}</TableHead>
+            <TableHead>{t("admin.news.table.status", "Status")}</TableHead>
+            <TableHead className="text-right">{t("admin.news.table.actions", "Actions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {news.length === 0 ? (
             <TableRow>
               <TableCell colSpan={8} className="text-center h-24 text-muted-foreground">
-                No stories found.
+                {t("admin.news.table.noStories", "No stories found.")}
               </TableCell>
             </TableRow>
           ) : (
@@ -111,31 +114,31 @@ export function NewsTable({ news, onViewStory }: NewsTableProps) {
                       </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end" className="w-[160px]">
-                      <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                      <DropdownMenuLabel>{t("admin.news.table.actions", "Actions")}</DropdownMenuLabel>
                       <DropdownMenuItem onClick={() => onViewStory(story)}>
-                        <Eye className="mr-2 h-4 w-4" /> View Details
+                        <Eye className="mr-2 h-4 w-4" /> {t("admin.news.table.viewDetails", "View Details")}
                       </DropdownMenuItem>
                       <DropdownMenuItem>
-                        <Edit className="mr-2 h-4 w-4" /> Edit Content
+                        <Edit className="mr-2 h-4 w-4" /> {t("admin.news.table.editContent", "Edit Content")}
                       </DropdownMenuItem>
                       <DropdownMenuSeparator />
                       {story.status !== "Approved" && story.status !== "Published" && (
                         <DropdownMenuItem className="text-emerald-600 dark:text-emerald-400">
-                          <CheckCircle className="mr-2 h-4 w-4" /> Approve
+                          <CheckCircle className="mr-2 h-4 w-4" /> {t("admin.news.table.approve", "Approve")}
                         </DropdownMenuItem>
                       )}
                       {story.status === "Approved" && (
                         <DropdownMenuItem className="text-blue-600 dark:text-blue-400">
-                          <Send className="mr-2 h-4 w-4" /> Publish Now
+                          <Send className="mr-2 h-4 w-4" /> {t("admin.news.table.publishNow", "Publish Now")}
                         </DropdownMenuItem>
                       )}
                       {story.status !== "Rejected" && (
                         <DropdownMenuItem className="text-rose-600 dark:text-rose-400">
-                          <XCircle className="mr-2 h-4 w-4" /> Reject
+                          <XCircle className="mr-2 h-4 w-4" /> {t("admin.news.table.reject", "Reject")}
                         </DropdownMenuItem>
                       )}
                       <DropdownMenuItem className="text-amber-600 dark:text-amber-400">
-                        <FileWarning className="mr-2 h-4 w-4" /> Request Changes
+                        <FileWarning className="mr-2 h-4 w-4" /> {t("admin.news.table.requestChanges", "Request Changes")}
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>

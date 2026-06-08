@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import type { Variants } from "framer-motion"
+import { useTranslation } from "react-i18next"
 import { Separator } from "@/components/ui/separator"
 
 // Import all sections
@@ -37,6 +38,8 @@ const fadeInUp: Variants = {
 }
 
 export function HomePage() {
+  const { t } = useTranslation()
+
   return (
     <div className="w-full flex flex-col">
       {/* 1. Breaking News Ticker */}
@@ -47,7 +50,7 @@ export function HomePage() {
       
       {/* 3. Top Headlines Grid */}
       <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp}>
-        <NewsGrid title="Top Headlines" stories={TOP_HEADLINES} />
+        <NewsGrid title={t("home.topHeadlines", "Top Headlines")} stories={TOP_HEADLINES} />
       </motion.div>
       
       {/* 4. Advertisement space */}
@@ -67,7 +70,7 @@ export function HomePage() {
       
       {/* 7. Trending News Grid */}
       <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-100px" }} variants={fadeInUp}>
-        <NewsGrid title="Trending Now" stories={TRENDING_NEWS} />
+        <NewsGrid title={t("home.trendingNow", "Trending Now")} stories={TRENDING_NEWS} />
       </motion.div>
       
       <Separator className="my-8" />

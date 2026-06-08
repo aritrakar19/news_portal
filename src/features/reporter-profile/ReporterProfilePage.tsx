@@ -21,6 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Separator } from "@/components/ui/separator"
 import { toast } from "sonner"
+import { useTranslation } from "react-i18next"
 
 // Form Schemas
 const personalInfoSchema = z.object({
@@ -79,6 +80,7 @@ const REPORTER_DATA = {
 }
 
 export function ReporterProfilePage() {
+  const { t } = useTranslation()
   const [activeTab, setActiveTab] = useState("personal")
   const [isSaving, setIsSaving] = useState(false)
 
@@ -130,8 +132,8 @@ export function ReporterProfilePage() {
   return (
     <div className="space-y-6 pb-10">
       <div className="flex flex-col gap-2">
-        <h1 className="text-3xl font-heading font-bold text-slate-900 dark:text-white">Reporter Profile</h1>
-        <p className="text-muted-foreground">Manage your personal information, credentials, and settings.</p>
+        <h1 className="text-3xl font-heading font-bold text-slate-900 dark:text-white">{t("profile.title", "Reporter Profile")}</h1>
+        <p className="text-muted-foreground">{t("profile.subtitle", "Manage your personal information, credentials, and settings.")}</p>
       </div>
 
       <div className="grid lg:grid-cols-12 gap-6">
@@ -151,7 +153,7 @@ export function ReporterProfilePage() {
                   <div className="flex items-center justify-center gap-2">
                     <h2 className="text-xl font-bold font-heading">{REPORTER_DATA.personal.fullName}</h2>
                     <Badge className="bg-blue-500/10 text-blue-600 hover:bg-blue-500/20 border-none px-1.5 py-0 flex items-center gap-1 text-[10px]">
-                      <CheckCircle2 className="h-3 w-3" /> Verified
+                      <CheckCircle2 className="h-3 w-3" /> {t("profile.verified", "Verified")}
                     </Badge>
                   </div>
                   <p className="text-primary font-medium text-sm">{REPORTER_DATA.designation}</p>
@@ -163,11 +165,11 @@ export function ReporterProfilePage() {
                 
                 <div className="mt-6 w-full pt-6 border-t border-border/50 grid grid-cols-2 gap-4">
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">Reporter ID</p>
+                    <p className="text-xs text-muted-foreground mb-1">{t("profile.reporterId", "Reporter ID")}</p>
                     <p className="font-mono text-sm font-semibold">{REPORTER_DATA.id}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground mb-1">Joined</p>
+                    <p className="text-xs text-muted-foreground mb-1">{t("profile.joined", "Joined")}</p>
                     <p className="text-sm font-medium">Jan 2023</p>
                   </div>
                 </div>
@@ -180,7 +182,7 @@ export function ReporterProfilePage() {
             <Card className="border-none shadow-sm bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm">
               <CardHeader className="pb-4">
                 <CardTitle className="text-base flex items-center justify-between">
-                  Profile Completion
+                  {t("profile.completion", "Profile Completion")}
                   <span className="text-primary font-bold">{REPORTER_DATA.completionPercentage}%</span>
                 </CardTitle>
               </CardHeader>
@@ -190,9 +192,9 @@ export function ReporterProfilePage() {
                 <div className="bg-amber-50 dark:bg-amber-500/10 border border-amber-200 dark:border-amber-500/20 rounded-lg p-3 flex items-start gap-3">
                   <AlertCircle className="h-5 w-5 text-amber-500 shrink-0 mt-0.5" />
                   <div>
-                    <p className="text-sm font-medium text-amber-800 dark:text-amber-400">Missing Information</p>
+                    <p className="text-sm font-medium text-amber-800 dark:text-amber-400">{t("profile.missingInfo", "Missing Information")}</p>
                     <p className="text-xs text-amber-700/80 dark:text-amber-400/80 mt-1">
-                      Please upload your secondary ID proof to complete your profile to 100%.
+                      {t("profile.missingInfoDesc", "Please upload your secondary ID proof to complete your profile to 100%.")}
                     </p>
                   </div>
                 </div>
@@ -206,27 +208,27 @@ export function ReporterProfilePage() {
               <CardHeader className="pb-4">
                 <CardTitle className="text-base flex items-center gap-2">
                   <ShieldCheck className="h-5 w-5 text-primary" />
-                  Account Status
+                  {t("profile.accountStatus", "Account Status")}
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">Reporter Status</span>
+                  <span className="text-sm text-muted-foreground">{t("profile.reporterStatus", "Reporter Status")}</span>
                   <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">{REPORTER_DATA.status}</Badge>
                 </div>
                 <Separator className="bg-border/50" />
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">Approval Status</span>
+                  <span className="text-sm text-muted-foreground">{t("profile.approvalStatus", "Approval Status")}</span>
                   <Badge variant="outline" className="bg-emerald-50 text-emerald-700 border-emerald-200">{REPORTER_DATA.approvalStatus}</Badge>
                 </div>
                 <Separator className="bg-border/50" />
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">Press ID</span>
+                  <span className="text-sm text-muted-foreground">{t("profile.pressId", "Press ID")}</span>
                   <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">{REPORTER_DATA.pressIdStatus}</Badge>
                 </div>
                 <Separator className="bg-border/50" />
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">Valid Until</span>
+                  <span className="text-sm text-muted-foreground">{t("profile.validUntil", "Valid Until")}</span>
                   <span className="text-sm font-medium text-slate-700 dark:text-slate-300">{REPORTER_DATA.membershipValidity}</span>
                 </div>
               </CardContent>
@@ -245,28 +247,28 @@ export function ReporterProfilePage() {
                     className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none px-0 pb-3 pt-0 text-muted-foreground data-[state=active]:text-foreground"
                   >
                     <User className="h-4 w-4 mr-2" />
-                    Personal Info
+                    {t("profile.tabs.personal", "Personal Info")}
                   </TabsTrigger>
                   <TabsTrigger 
                     value="professional"
                     className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none px-0 pb-3 pt-0 text-muted-foreground data-[state=active]:text-foreground"
                   >
                     <Briefcase className="h-4 w-4 mr-2" />
-                    Professional
+                    {t("profile.tabs.professional", "Professional")}
                   </TabsTrigger>
                   <TabsTrigger 
                     value="documents"
                     className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none px-0 pb-3 pt-0 text-muted-foreground data-[state=active]:text-foreground"
                   >
                     <FileText className="h-4 w-4 mr-2" />
-                    Documents
+                    {t("profile.tabs.documents", "Documents")}
                   </TabsTrigger>
                   <TabsTrigger 
                     value="security"
                     className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-primary rounded-none px-0 pb-3 pt-0 text-muted-foreground data-[state=active]:text-foreground"
                   >
                     <Shield className="h-4 w-4 mr-2" />
-                    Security
+                    {t("profile.tabs.security", "Security")}
                   </TabsTrigger>
                 </TabsList>
               </div>
@@ -282,7 +284,7 @@ export function ReporterProfilePage() {
                           name="fullName"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Full Name</FormLabel>
+                              <FormLabel>{t("profile.form.fullName", "Full Name")}</FormLabel>
                               <FormControl>
                                 <Input placeholder="John Doe" {...field} className="bg-slate-50 dark:bg-slate-800/50" />
                               </FormControl>
@@ -295,7 +297,7 @@ export function ReporterProfilePage() {
                           name="fatherName"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Father's Name</FormLabel>
+                              <FormLabel>{t("profile.form.fatherName", "Father's Name")}</FormLabel>
                               <FormControl>
                                 <Input placeholder="Robert Doe" {...field} className="bg-slate-50 dark:bg-slate-800/50" />
                               </FormControl>
@@ -308,7 +310,7 @@ export function ReporterProfilePage() {
                           name="dob"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Date of Birth</FormLabel>
+                              <FormLabel>{t("profile.form.dob", "Date of Birth")}</FormLabel>
                               <FormControl>
                                 <Input type="date" {...field} className="bg-slate-50 dark:bg-slate-800/50" />
                               </FormControl>
@@ -321,7 +323,7 @@ export function ReporterProfilePage() {
                           name="mobile"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Mobile Number</FormLabel>
+                              <FormLabel>{t("profile.form.mobile", "Mobile Number")}</FormLabel>
                               <FormControl>
                                 <div className="relative">
                                   <Phone className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -337,7 +339,7 @@ export function ReporterProfilePage() {
                           name="email"
                           render={({ field }) => (
                             <FormItem className="md:col-span-2">
-                              <FormLabel>Email Address</FormLabel>
+                              <FormLabel>{t("profile.form.email", "Email Address")}</FormLabel>
                               <FormControl>
                                 <div className="relative">
                                   <Mail className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -353,7 +355,7 @@ export function ReporterProfilePage() {
                           name="address"
                           render={({ field }) => (
                             <FormItem className="md:col-span-2">
-                              <FormLabel>Full Address</FormLabel>
+                              <FormLabel>{t("profile.form.address", "Full Address")}</FormLabel>
                               <FormControl>
                                 <Textarea placeholder="123, Main Street, Area" {...field} className="bg-slate-50 dark:bg-slate-800/50 resize-none h-20" />
                               </FormControl>
@@ -366,7 +368,7 @@ export function ReporterProfilePage() {
                           name="state"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>State</FormLabel>
+                              <FormLabel>{t("profile.form.state", "State")}</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                   <SelectTrigger className="bg-slate-50 dark:bg-slate-800/50">
@@ -389,7 +391,7 @@ export function ReporterProfilePage() {
                           name="district"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>District</FormLabel>
+                              <FormLabel>{t("profile.form.district", "District")}</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                   <SelectTrigger className="bg-slate-50 dark:bg-slate-800/50">
@@ -413,9 +415,9 @@ export function ReporterProfilePage() {
                       <Button type="submit" disabled={isSaving} className="min-w-[140px]">
                         {isSaving ? (
                           <div className="flex items-center gap-2">
-                            <RefreshCw className="h-4 w-4 animate-spin" /> Saving...
+                            <RefreshCw className="h-4 w-4 animate-spin" /> {t("profile.buttons.saving", "Saving...")}
                           </div>
-                        ) : "Save Changes"}
+                        ) : t("profile.buttons.save", "Save Changes")}
                       </Button>
                     </CardFooter>
                   </form>
@@ -433,7 +435,7 @@ export function ReporterProfilePage() {
                           name="qualification"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Highest Qualification</FormLabel>
+                              <FormLabel>{t("profile.form.qualification", "Highest Qualification")}</FormLabel>
                               <FormControl>
                                 <Input placeholder="e.g. Masters in Journalism" {...field} className="bg-slate-50 dark:bg-slate-800/50" />
                               </FormControl>
@@ -446,7 +448,7 @@ export function ReporterProfilePage() {
                           name="experience"
                           render={({ field }) => (
                             <FormItem>
-                              <FormLabel>Years of Experience</FormLabel>
+                              <FormLabel>{t("profile.form.experience", "Years of Experience")}</FormLabel>
                               <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
                                   <SelectTrigger className="bg-slate-50 dark:bg-slate-800/50">
@@ -469,11 +471,11 @@ export function ReporterProfilePage() {
                           name="preferredCategories"
                           render={({ field }) => (
                             <FormItem className="md:col-span-2">
-                              <FormLabel>Preferred News Categories</FormLabel>
+                              <FormLabel>{t("profile.form.prefCategories", "Preferred News Categories")}</FormLabel>
                               <FormControl>
                                 <Input placeholder="e.g. Politics, Tech, Sports" {...field} className="bg-slate-50 dark:bg-slate-800/50" />
                               </FormControl>
-                              <FormDescription>Comma separated list of categories you excel in.</FormDescription>
+                              <FormDescription>{t("profile.form.prefDesc", "Comma separated list of categories you excel in.")}</FormDescription>
                               <FormMessage />
                             </FormItem>
                           )}
@@ -483,11 +485,11 @@ export function ReporterProfilePage() {
                           name="coverageArea"
                           render={({ field }) => (
                             <FormItem className="md:col-span-2">
-                              <FormLabel>Primary Coverage Area</FormLabel>
+                              <FormLabel>{t("profile.form.coverageArea", "Primary Coverage Area")}</FormLabel>
                               <FormControl>
                                 <Input placeholder="e.g. Kolkata Metropolitan Area" {...field} className="bg-slate-50 dark:bg-slate-800/50" />
                               </FormControl>
-                              <FormDescription>The main geographical area you cover for reporting.</FormDescription>
+                              <FormDescription>{t("profile.form.coverageDesc", "The main geographical area you cover for reporting.")}</FormDescription>
                               <FormMessage />
                             </FormItem>
                           )}
@@ -498,9 +500,9 @@ export function ReporterProfilePage() {
                       <Button type="submit" disabled={isSaving} className="min-w-[140px]">
                         {isSaving ? (
                           <div className="flex items-center gap-2">
-                            <RefreshCw className="h-4 w-4 animate-spin" /> Saving...
+                            <RefreshCw className="h-4 w-4 animate-spin" /> {t("profile.buttons.saving", "Saving...")}
                           </div>
-                        ) : "Save Changes"}
+                        ) : t("profile.buttons.save", "Save Changes")}
                       </Button>
                     </CardFooter>
                   </form>
@@ -513,9 +515,9 @@ export function ReporterProfilePage() {
                   <div className="bg-blue-50 dark:bg-blue-500/10 border border-blue-200 dark:border-blue-500/20 rounded-lg p-4 flex gap-3">
                     <ShieldCheck className="h-5 w-5 text-blue-600 mt-0.5" />
                     <div>
-                      <h4 className="font-medium text-blue-900 dark:text-blue-300">Document Verification</h4>
+                      <h4 className="font-medium text-blue-900 dark:text-blue-300">{t("profile.docs.verifyTitle", "Document Verification")}</h4>
                       <p className="text-sm text-blue-700/80 dark:text-blue-300/80 mt-1">
-                        Keep your documents up to date. Verified documents are required to maintain your active reporter status and press credentials.
+                        {t("profile.docs.verifyDesc", "Keep your documents up to date. Verified documents are required to maintain your active reporter status and press credentials.")}
                       </p>
                     </div>
                   </div>
@@ -530,12 +532,12 @@ export function ReporterProfilePage() {
                         <div>
                           <h5 className="font-medium">Aadhaar Card</h5>
                           <p className="text-xs text-muted-foreground mt-0.5">Uploaded on Oct 10, 2023 • PDF • 1.2 MB</p>
-                          <Badge className="mt-2 bg-emerald-100 text-emerald-700 hover:bg-emerald-100 border-none px-2 py-0">Verified</Badge>
+                          <Badge className="mt-2 bg-emerald-100 text-emerald-700 hover:bg-emerald-100 border-none px-2 py-0">{t("profile.verified", "Verified")}</Badge>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Button variant="outline" size="sm" className="gap-2"><Eye className="h-4 w-4" /> View</Button>
-                        <Button variant="outline" size="sm" className="gap-2"><RefreshCw className="h-4 w-4" /> Replace</Button>
+                        <Button variant="outline" size="sm" className="gap-2"><Eye className="h-4 w-4" /> {t("profile.docs.view", "View")}</Button>
+                        <Button variant="outline" size="sm" className="gap-2"><RefreshCw className="h-4 w-4" /> {t("profile.docs.replace", "Replace")}</Button>
                       </div>
                     </div>
 
@@ -546,13 +548,13 @@ export function ReporterProfilePage() {
                           <FileText className="h-6 w-6" />
                         </div>
                         <div>
-                          <h5 className="font-medium">Secondary ID Proof</h5>
-                          <p className="text-xs text-amber-600 dark:text-amber-400 mt-0.5">Required for complete verification</p>
-                          <Badge variant="outline" className="mt-2 bg-amber-50 text-amber-700 border-amber-200">Pending Upload</Badge>
+                          <h5 className="font-medium">{t("profile.docs.secondaryId", "Secondary ID Proof")}</h5>
+                          <p className="text-xs text-amber-600 dark:text-amber-400 mt-0.5">{t("profile.docs.reqComplete", "Required for complete verification")}</p>
+                          <Badge variant="outline" className="mt-2 bg-amber-50 text-amber-700 border-amber-200">{t("profile.docs.pending", "Pending Upload")}</Badge>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Button size="sm" className="gap-2"><Upload className="h-4 w-4" /> Upload</Button>
+                        <Button size="sm" className="gap-2"><Upload className="h-4 w-4" /> {t("profile.docs.upload", "Upload")}</Button>
                       </div>
                     </div>
 
@@ -563,13 +565,13 @@ export function ReporterProfilePage() {
                           <User className="h-6 w-6" />
                         </div>
                         <div>
-                          <h5 className="font-medium">Profile Photo</h5>
+                          <h5 className="font-medium">{t("profile.docs.photo", "Profile Photo")}</h5>
                           <p className="text-xs text-muted-foreground mt-0.5">Uploaded on Oct 10, 2023 • JPG • 800 KB</p>
-                          <Badge className="mt-2 bg-emerald-100 text-emerald-700 hover:bg-emerald-100 border-none px-2 py-0">Verified</Badge>
+                          <Badge className="mt-2 bg-emerald-100 text-emerald-700 hover:bg-emerald-100 border-none px-2 py-0">{t("profile.verified", "Verified")}</Badge>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Button variant="outline" size="sm" className="gap-2"><RefreshCw className="h-4 w-4" /> Replace</Button>
+                        <Button variant="outline" size="sm" className="gap-2"><RefreshCw className="h-4 w-4" /> {t("profile.docs.replace", "Replace")}</Button>
                       </div>
                     </div>
                   </div>
@@ -589,11 +591,11 @@ export function ReporterProfilePage() {
                               <Phone className="h-4 w-4" />
                             </div>
                             <div>
-                              <p className="text-sm font-medium">Mobile Verification</p>
+                              <p className="text-sm font-medium">{t("profile.security.mobileVerify", "Mobile Verification")}</p>
                               <p className="text-xs text-muted-foreground">Ends in 3210</p>
                             </div>
                           </div>
-                          <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100 border-none px-2 py-0">Verified</Badge>
+                          <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100 border-none px-2 py-0">{t("profile.verified", "Verified")}</Badge>
                         </div>
 
                         <div className="p-4 border border-border/50 rounded-xl flex items-center justify-between bg-slate-50/50 dark:bg-slate-800/30">
@@ -602,11 +604,11 @@ export function ReporterProfilePage() {
                               <Mail className="h-4 w-4" />
                             </div>
                             <div>
-                              <p className="text-sm font-medium">Email Verification</p>
+                              <p className="text-sm font-medium">{t("profile.security.emailVerify", "Email Verification")}</p>
                               <p className="text-xs text-muted-foreground">ari***@example.com</p>
                             </div>
                           </div>
-                          <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100 border-none px-2 py-0">Verified</Badge>
+                          <Badge className="bg-emerald-100 text-emerald-700 hover:bg-emerald-100 border-none px-2 py-0">{t("profile.verified", "Verified")}</Badge>
                         </div>
                       </div>
 
@@ -615,8 +617,8 @@ export function ReporterProfilePage() {
                       {/* Password Change */}
                       <div className="space-y-4 max-w-md">
                         <div>
-                          <h3 className="text-lg font-heading font-medium">Change Password</h3>
-                          <p className="text-sm text-muted-foreground mt-1">Ensure your account is using a long, random password to stay secure.</p>
+                          <h3 className="text-lg font-heading font-medium">{t("profile.security.changePass", "Change Password")}</h3>
+                          <p className="text-sm text-muted-foreground mt-1">{t("profile.security.passDesc", "Ensure your account is using a long, random password to stay secure.")}</p>
                         </div>
                         
                         <div className="space-y-4 pt-2">
@@ -625,7 +627,7 @@ export function ReporterProfilePage() {
                             name="currentPassword"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>Current Password</FormLabel>
+                                <FormLabel>{t("profile.security.currPass", "Current Password")}</FormLabel>
                                 <FormControl>
                                   <div className="relative">
                                     <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -641,7 +643,7 @@ export function ReporterProfilePage() {
                             name="newPassword"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>New Password</FormLabel>
+                                <FormLabel>{t("profile.security.newPass", "New Password")}</FormLabel>
                                 <FormControl>
                                   <div className="relative">
                                     <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -657,7 +659,7 @@ export function ReporterProfilePage() {
                             name="confirmPassword"
                             render={({ field }) => (
                               <FormItem>
-                                <FormLabel>Confirm New Password</FormLabel>
+                                <FormLabel>{t("profile.security.confirmPass", "Confirm New Password")}</FormLabel>
                                 <FormControl>
                                   <div className="relative">
                                     <Lock className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -675,9 +677,9 @@ export function ReporterProfilePage() {
                       <Button type="submit" disabled={isSaving} className="min-w-[140px]">
                         {isSaving ? (
                           <div className="flex items-center gap-2">
-                            <RefreshCw className="h-4 w-4 animate-spin" /> Updating...
+                            <RefreshCw className="h-4 w-4 animate-spin" /> {t("profile.buttons.updating", "Updating...")}
                           </div>
-                        ) : "Update Password"}
+                        ) : t("profile.buttons.updatePass", "Update Password")}
                       </Button>
                     </CardFooter>
                   </form>

@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+import { useTranslation } from "react-i18next"
 
 interface StoryReviewSheetProps {
   story: NewsStory | null
@@ -26,6 +27,8 @@ interface StoryReviewSheetProps {
 }
 
 export function StoryReviewSheet({ story, open, onOpenChange }: StoryReviewSheetProps) {
+  const { t } = useTranslation()
+
   if (!story) return null
 
   const getFactCheckIcon = (status: string) => {
@@ -42,7 +45,7 @@ export function StoryReviewSheet({ story, open, onOpenChange }: StoryReviewSheet
       <SheetContent className="w-full sm:max-w-2xl overflow-y-auto">
         <SheetHeader className="text-left mb-6">
           <div className="flex items-center justify-between">
-            <SheetTitle>Editorial Review</SheetTitle>
+            <SheetTitle>{t("admin.news.sheet.title", "Editorial Review")}</SheetTitle>
             <Badge variant="outline" className="font-mono">{story.id}</Badge>
           </div>
         </SheetHeader>
@@ -53,7 +56,7 @@ export function StoryReviewSheet({ story, open, onOpenChange }: StoryReviewSheet
             <div className="flex items-center gap-2 mb-2">
               <Badge variant="secondary">{story.category}</Badge>
               {story.priority === "Breaking News" && (
-                <Badge variant="destructive" className="animate-pulse"><Zap className="mr-1 h-3 w-3" /> Breaking</Badge>
+                <Badge variant="destructive" className="animate-pulse"><Zap className="mr-1 h-3 w-3" /> {t("admin.news.sheet.breaking", "Breaking")}</Badge>
               )}
             </div>
             <h1 className="text-2xl font-bold font-heading mb-4">{story.headline}</h1>
@@ -87,11 +90,11 @@ export function StoryReviewSheet({ story, open, onOpenChange }: StoryReviewSheet
 
           {/* Editorial Controls */}
           <div className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-6 border space-y-6">
-            <h3 className="font-semibold flex items-center gap-2"><Edit className="h-4 w-4" /> Editorial Review</h3>
+            <h3 className="font-semibold flex items-center gap-2"><Edit className="h-4 w-4" /> {t("admin.news.sheet.review", "Editorial Review")}</h3>
             
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
-                <label className="text-sm font-medium text-muted-foreground">Fact Check Status</label>
+                <label className="text-sm font-medium text-muted-foreground">{t("admin.news.sheet.factCheckStatus", "Fact Check Status")}</label>
                 <div className="flex items-center gap-2">
                   {getFactCheckIcon(story.factCheckStatus)}
                   <Select defaultValue={story.factCheckStatus.toLowerCase().replace(' ', '-')}>
@@ -99,33 +102,33 @@ export function StoryReviewSheet({ story, open, onOpenChange }: StoryReviewSheet
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="verified">Verified</SelectItem>
-                      <SelectItem value="needs-verification">Needs Verification</SelectItem>
-                      <SelectItem value="flagged">Flagged</SelectItem>
+                      <SelectItem value="verified">{t("admin.news.sheet.verified", "Verified")}</SelectItem>
+                      <SelectItem value="needs-verification">{t("admin.news.sheet.needsVerification", "Needs Verification")}</SelectItem>
+                      <SelectItem value="flagged">{t("admin.news.sheet.flagged", "Flagged")}</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-medium text-muted-foreground">Priority Level</label>
+                <label className="text-sm font-medium text-muted-foreground">{t("admin.news.sheet.priorityLevel", "Priority Level")}</label>
                 <Select defaultValue={story.priority.toLowerCase().replace(' ', '-')}>
                   <SelectTrigger className="bg-background">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="normal">Normal</SelectItem>
-                    <SelectItem value="important">Important</SelectItem>
-                    <SelectItem value="breaking-news">Breaking News</SelectItem>
+                    <SelectItem value="normal">{t("admin.news.sheet.normal", "Normal")}</SelectItem>
+                    <SelectItem value="important">{t("admin.news.sheet.important", "Important")}</SelectItem>
+                    <SelectItem value="breaking-news">{t("admin.news.sheet.breakingNews", "Breaking News")}</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
             </div>
 
             <div className="space-y-2">
-              <label className="text-sm font-medium text-muted-foreground">Internal Notes / Comments</label>
+              <label className="text-sm font-medium text-muted-foreground">{t("admin.news.sheet.internalNotes", "Internal Notes / Comments")}</label>
               <Textarea 
-                placeholder="Leave notes for other editors or the reporter..." 
+                placeholder={t("admin.news.sheet.notesPlaceholder", "Leave notes for other editors or the reporter...")}
                 defaultValue={story.editorialNotes}
                 className="bg-background min-h-[100px]"
               />
@@ -134,11 +137,11 @@ export function StoryReviewSheet({ story, open, onOpenChange }: StoryReviewSheet
 
           {/* Workflow Visualization */}
           <div>
-             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">Approval Pipeline</h3>
+             <h3 className="text-sm font-semibold text-muted-foreground uppercase tracking-wider mb-4">{t("admin.news.sheet.pipeline", "Approval Pipeline")}</h3>
              <div className="flex items-center justify-between text-sm">
                 <div className="flex flex-col items-center gap-2">
                   <div className="h-8 w-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center"><CheckCircle2 className="h-4 w-4" /></div>
-                  <span className="text-xs font-medium">Submitted</span>
+                  <span className="text-xs font-medium">{t("admin.news.sheet.submitted", "Submitted")}</span>
                 </div>
                 <div className="h-[2px] flex-1 bg-emerald-100 mx-2"></div>
                 
@@ -146,7 +149,7 @@ export function StoryReviewSheet({ story, open, onOpenChange }: StoryReviewSheet
                   <div className={`h-8 w-8 rounded-full flex items-center justify-center ${story.status !== "Pending Review" ? 'bg-emerald-100 text-emerald-600' : 'bg-blue-100 text-blue-600'}`}>
                     {story.status !== "Pending Review" ? <CheckCircle2 className="h-4 w-4" /> : <div className="h-3 w-3 rounded-full bg-blue-600 animate-pulse" />}
                   </div>
-                  <span className="text-xs font-medium">Reviewed</span>
+                  <span className="text-xs font-medium">{t("admin.news.sheet.reviewed", "Reviewed")}</span>
                 </div>
                 <div className={`h-[2px] flex-1 mx-2 ${story.status === "Approved" || story.status === "Published" ? 'bg-emerald-100' : 'bg-slate-100 dark:bg-slate-800'}`}></div>
                 
@@ -154,7 +157,7 @@ export function StoryReviewSheet({ story, open, onOpenChange }: StoryReviewSheet
                    <div className={`h-8 w-8 rounded-full flex items-center justify-center ${story.status === "Approved" || story.status === "Published" ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 dark:bg-slate-800 text-muted-foreground'}`}>
                     {story.status === "Approved" || story.status === "Published" ? <CheckCircle2 className="h-4 w-4" /> : <FileText className="h-4 w-4" />}
                   </div>
-                  <span className="text-xs font-medium">Approved</span>
+                  <span className="text-xs font-medium">{t("admin.news.sheet.approved", "Approved")}</span>
                 </div>
                 <div className={`h-[2px] flex-1 mx-2 ${story.status === "Published" ? 'bg-emerald-100' : 'bg-slate-100 dark:bg-slate-800'}`}></div>
 
@@ -162,7 +165,7 @@ export function StoryReviewSheet({ story, open, onOpenChange }: StoryReviewSheet
                   <div className={`h-8 w-8 rounded-full flex items-center justify-center ${story.status === "Published" ? 'bg-emerald-100 text-emerald-600' : 'bg-slate-100 dark:bg-slate-800 text-muted-foreground'}`}>
                     {story.status === "Published" ? <CheckCircle2 className="h-4 w-4" /> : <Send className="h-4 w-4" />}
                   </div>
-                  <span className="text-xs font-medium">Published</span>
+                  <span className="text-xs font-medium">{t("admin.news.sheet.published", "Published")}</span>
                 </div>
              </div>
           </div>
@@ -171,19 +174,19 @@ export function StoryReviewSheet({ story, open, onOpenChange }: StoryReviewSheet
 
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-3 pb-8">
-            <Button className="flex-1 bg-emerald-600 hover:bg-emerald-700">Approve</Button>
+            <Button className="flex-1 bg-emerald-600 hover:bg-emerald-700">{t("admin.news.sheet.approveBtn", "Approve")}</Button>
             <Button variant="outline" className="flex-1 border-amber-500 text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950">
-              <MessageSquare className="mr-2 h-4 w-4" /> Request Changes
+              <MessageSquare className="mr-2 h-4 w-4" /> {t("admin.news.sheet.reqChangesBtn", "Request Changes")}
             </Button>
-            <Button variant="destructive" className="flex-1">Reject</Button>
+            <Button variant="destructive" className="flex-1">{t("admin.news.sheet.rejectBtn", "Reject")}</Button>
             {story.status === "Approved" && (
                <Button className="w-full bg-blue-600 hover:bg-blue-700 mt-2">
-                 <Send className="mr-2 h-4 w-4" /> Publish to Platform
+                 <Send className="mr-2 h-4 w-4" /> {t("admin.news.sheet.publishPlatformBtn", "Publish to Platform")}
                </Button>
             )}
             {story.priority !== "Breaking News" && (
               <Button variant="outline" className="w-full mt-2 text-rose-500 border-rose-200 hover:bg-rose-50 dark:border-rose-900 dark:hover:bg-rose-950">
-                <Zap className="mr-2 h-4 w-4" /> Elevate to Breaking News
+                <Zap className="mr-2 h-4 w-4" /> {t("admin.news.sheet.elevateBtn", "Elevate to Breaking News")}
               </Button>
             )}
           </div>

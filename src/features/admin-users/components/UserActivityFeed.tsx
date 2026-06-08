@@ -1,8 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { mockUserActivity } from "../data/mockUsers"
 import { UserPlus, LogIn, ShieldQuestion, ShieldAlert, Edit3 } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function UserActivityFeed() {
+  const { t } = useTranslation()
   const getIconAndColor = (type: string) => {
     switch (type) {
       case "registration":
@@ -23,8 +25,8 @@ export function UserActivityFeed() {
   return (
     <Card className="border shadow-sm h-full flex flex-col">
       <CardHeader className="pb-4">
-        <CardTitle className="text-xl">System Activity Logs</CardTitle>
-        <CardDescription>Recent actions across the platform</CardDescription>
+        <CardTitle className="text-xl">{t("admin.users.activity.title", "System Activity Logs")}</CardTitle>
+        <CardDescription>{t("admin.users.activity.subtitle", "Recent actions across the platform")}</CardDescription>
       </CardHeader>
       <CardContent className="flex-1">
         <div className="space-y-6">

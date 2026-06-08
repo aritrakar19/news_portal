@@ -1,33 +1,36 @@
 import { Newspaper, Video, Users } from "lucide-react"
-
-const SOURCES = [
-  {
-    title: "News Revenue",
-    amount: "₹28,400",
-    percentage: "62%",
-    icon: Newspaper,
-    trend: "+12.5%",
-    trendUp: true,
-  },
-  {
-    title: "Video Revenue",
-    amount: "₹12,800",
-    percentage: "28%",
-    icon: Video,
-    trend: "+24.0%",
-    trendUp: true,
-  },
-  {
-    title: "Referral Revenue",
-    amount: "₹4,000",
-    percentage: "10%",
-    icon: Users,
-    trend: "-2.5%",
-    trendUp: false,
-  },
-]
+import { useTranslation } from "react-i18next"
 
 export function RevenueSourceCards() {
+  const { t } = useTranslation()
+
+  const SOURCES = [
+    {
+      title: t("earnings.source.news", "News Revenue"),
+      amount: "₹28,400",
+      percentage: "62%",
+      icon: Newspaper,
+      trend: "+12.5%",
+      trendUp: true,
+    },
+    {
+      title: t("earnings.source.video", "Video Revenue"),
+      amount: "₹12,800",
+      percentage: "28%",
+      icon: Video,
+      trend: "+24.0%",
+      trendUp: true,
+    },
+    {
+      title: t("earnings.source.referral", "Referral Revenue"),
+      amount: "₹4,000",
+      percentage: "10%",
+      icon: Users,
+      trend: "-2.5%",
+      trendUp: false,
+    },
+  ]
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {SOURCES.map((source, idx) => {

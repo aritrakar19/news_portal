@@ -1,4 +1,5 @@
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, Area, ComposedChart, Line } from "recharts"
+import { useTranslation } from "react-i18next"
 
 const MONTHLY_DATA = [
   { name: "Jan", earnings: 4200 },
@@ -17,11 +18,13 @@ const VIEWS_EARNINGS_DATA = [
 ]
 
 export function EarningsCharts() {
+  const { t } = useTranslation()
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Monthly Earnings Chart */}
       <div className="bg-white dark:bg-card border border-border shadow-sm rounded-xl p-6">
-        <h3 className="text-lg font-heading font-bold mb-6">Monthly Earnings Overview</h3>
+        <h3 className="text-lg font-heading font-bold mb-6">{t("earnings.charts.monthly", "Monthly Earnings Overview")}</h3>
         <div className="h-[300px] w-full">
           <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
             <BarChart data={MONTHLY_DATA} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
@@ -31,7 +34,7 @@ export function EarningsCharts() {
               <Tooltip 
                 cursor={{ fill: "#f1f5f9" }}
                 contentStyle={{ borderRadius: "8px", border: "1px solid #e2e8f0", boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)" }}
-                formatter={(value: any) => [`₹${value}`, "Earnings"]}
+                formatter={(value: any) => [`₹${value}`, t("earnings.charts.tooltipEarnings", "Earnings")]}
               />
               <Bar dataKey="earnings" fill="#10b981" radius={[4, 4, 0, 0]} maxBarSize={50} />
             </BarChart>
@@ -41,7 +44,7 @@ export function EarningsCharts() {
 
       {/* Views vs Earnings Chart */}
       <div className="bg-white dark:bg-card border border-border shadow-sm rounded-xl p-6">
-        <h3 className="text-lg font-heading font-bold mb-6">Views vs Earnings Correlation</h3>
+        <h3 className="text-lg font-heading font-bold mb-6">{t("earnings.charts.correlation", "Views vs Earnings Correlation")}</h3>
         <div className="h-[300px] w-full">
           <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
             <ComposedChart data={VIEWS_EARNINGS_DATA} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
@@ -58,8 +61,8 @@ export function EarningsCharts() {
               <Tooltip 
                 contentStyle={{ borderRadius: "8px", border: "1px solid #e2e8f0", boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)" }}
               />
-              <Area yAxisId="left" type="monotone" dataKey="views" fill="url(#colorViews)" stroke="#3b82f6" strokeWidth={2} name="Total Views" />
-              <Line yAxisId="right" type="monotone" dataKey="earnings" stroke="#10b981" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} activeDot={{ r: 6 }} name="Earnings" />
+              <Area yAxisId="left" type="monotone" dataKey="views" fill="url(#colorViews)" stroke="#3b82f6" strokeWidth={2} name={t("earnings.charts.tooltipViews", "Total Views")} />
+              <Line yAxisId="right" type="monotone" dataKey="earnings" stroke="#10b981" strokeWidth={3} dot={{ r: 4, strokeWidth: 2 }} activeDot={{ r: 6 }} name={t("earnings.charts.tooltipEarnings", "Earnings")} />
             </ComposedChart>
           </ResponsiveContainer>
         </div>

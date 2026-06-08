@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { Copy, Check, Share2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useTranslation } from "react-i18next"
 
 export function ReferralHeroCard() {
+  const { t } = useTranslation()
   const [copiedCode, setCopiedCode] = useState(false)
   const [copiedLink, setCopiedLink] = useState(false)
   
@@ -29,21 +31,21 @@ export function ReferralHeroCard() {
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
         <div>
           <span className="inline-block py-1 px-3 rounded-full bg-blue-500/30 text-blue-200 text-xs font-bold mb-4 border border-blue-400/30">
-            Reporter Growth Network
+            {t("referrals.hero.badge", "Reporter Growth Network")}
           </span>
           <h2 className="text-3xl sm:text-4xl font-heading font-extrabold mb-4 leading-tight">
-            Invite reporters.<br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">Earn lifetime commission.</span>
+            {t("referrals.hero.title1", "Invite reporters.")}<br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">{t("referrals.hero.title2", "Earn lifetime commission.")}</span>
           </h2>
           <p className="text-blue-100/80 mb-6 max-w-md">
-            Get ₹200 for every reporter who joins using your code, plus earn 5% of their generated revenue for life.
+            {t("referrals.hero.desc", "Get ₹200 for every reporter who joins using your code, plus earn 5% of their generated revenue for life.")}
           </p>
         </div>
 
         <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
           <div className="space-y-4">
             <div>
-              <p className="text-xs text-blue-200 uppercase tracking-wider mb-2 font-semibold">Your Referral Code</p>
+              <p className="text-xs text-blue-200 uppercase tracking-wider mb-2 font-semibold">{t("referrals.hero.yourCode", "Your Referral Code")}</p>
               <div className="flex gap-2">
                 <div className="bg-black/40 border border-white/10 rounded-lg px-4 py-3 flex-1 font-mono text-xl font-bold tracking-widest text-emerald-400 text-center">
                   {REFERRAL_CODE}
@@ -59,7 +61,7 @@ export function ReferralHeroCard() {
             </div>
 
             <div>
-              <p className="text-xs text-blue-200 uppercase tracking-wider mb-2 font-semibold mt-6">Your Invite Link</p>
+              <p className="text-xs text-blue-200 uppercase tracking-wider mb-2 font-semibold mt-6">{t("referrals.hero.yourLink", "Your Invite Link")}</p>
               <div className="flex gap-2">
                 <div className="bg-black/40 border border-white/10 rounded-lg px-4 py-3 flex-1 font-mono text-sm text-slate-300 truncate">
                   {REFERRAL_LINK}

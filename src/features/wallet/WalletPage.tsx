@@ -4,7 +4,11 @@ import { WithdrawalPanel } from "./components/WithdrawalPanel"
 import { EarningsBreakdownCard } from "./components/EarningsBreakdownCard"
 import { TransactionLedger } from "./components/TransactionLedger"
 
+import { useTranslation } from "react-i18next"
+
 export function WalletPage() {
+  const { t } = useTranslation()
+
   const containerVariants: any = {
     hidden: { opacity: 0 },
     visible: {
@@ -31,9 +35,9 @@ export function WalletPage() {
     >
       <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">Wallet Management</h1>
+          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{t("wallet.title", "Wallet Management")}</h1>
           <p className="text-muted-foreground mt-2 max-w-2xl">
-            Manage your funds, request withdrawals via UPI or Bank Transfer, and view your complete financial ledger.
+            {t("wallet.subtitle", "Manage your funds, request withdrawals via UPI or Bank Transfer, and view your complete financial ledger.")}
           </p>
         </div>
       </motion.div>

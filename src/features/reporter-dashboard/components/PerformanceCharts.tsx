@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, BarChart, Bar } from "recharts"
+import { useTranslation } from "react-i18next"
 
 const viewData = [
   { name: "Jan", views: 4000 },
@@ -20,12 +21,14 @@ const earningsData = [
 ]
 
 export function PerformanceCharts() {
+  const { t } = useTranslation()
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       {/* Views Chart */}
       <Card className="border-border shadow-sm">
         <CardHeader>
-          <CardTitle className="text-lg font-heading">Monthly Views Overview</CardTitle>
+          <CardTitle className="text-lg font-heading">{t("dashboard.charts.viewsTitle", "Monthly Views Overview")}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="h-[300px] w-full">
@@ -54,7 +57,7 @@ export function PerformanceCharts() {
       {/* Earnings Chart */}
       <Card className="border-border shadow-sm">
         <CardHeader>
-          <CardTitle className="text-lg font-heading">Monthly Earnings (₹)</CardTitle>
+          <CardTitle className="text-lg font-heading">{t("dashboard.charts.earningsTitle", "Monthly Earnings (₹)")}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="h-[300px] w-full">

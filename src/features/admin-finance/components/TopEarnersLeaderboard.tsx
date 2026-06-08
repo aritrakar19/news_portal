@@ -2,16 +2,19 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { mockTopEarners } from "../data/mockFinance"
 import { Trophy, TrendingUp, Eye } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function TopEarnersLeaderboard() {
+  const { t } = useTranslation()
+
   return (
     <Card className="border shadow-sm h-full flex flex-col">
       <CardHeader className="pb-4">
         <div className="flex items-center gap-2">
           <Trophy className="h-5 w-5 text-amber-500" />
-          <CardTitle className="text-xl">Top Earners</CardTitle>
+          <CardTitle className="text-xl">{t("admin.finance.leaderboard.title", "Top Earners")}</CardTitle>
         </div>
-        <CardDescription>Highest earning reporters this month</CardDescription>
+        <CardDescription>{t("admin.finance.leaderboard.subtitle", "Highest earning reporters this month")}</CardDescription>
       </CardHeader>
       <CardContent className="flex-1">
         <div className="space-y-6">
@@ -43,7 +46,7 @@ export function TopEarnersLeaderboard() {
                 </div>
                 <div className="text-xs text-muted-foreground flex items-center justify-end gap-1 mt-0.5">
                   <Eye className="h-3 w-3" />
-                  {earner.views.toLocaleString()} views
+                  {earner.views.toLocaleString()} {t("admin.finance.leaderboard.views", "views")}
                 </div>
               </div>
             </div>

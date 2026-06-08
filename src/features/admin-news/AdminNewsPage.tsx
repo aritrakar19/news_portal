@@ -8,8 +8,10 @@ import { StoryReviewSheet } from "./components/StoryReviewSheet"
 import { RecentEditorialActivity } from "./components/RecentEditorialActivity"
 import { Settings, FileCheck } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useTranslation } from "react-i18next"
 
 export function AdminNewsPage() {
+  const { t } = useTranslation()
   const [selectedStory, setSelectedStory] = useState<NewsStory | null>(null)
   const [isSheetOpen, setIsSheetOpen] = useState(false)
 
@@ -44,17 +46,17 @@ export function AdminNewsPage() {
     >
       <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">News Approval Center</h1>
+          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{t("admin.news.title", "News Approval Center")}</h1>
           <p className="text-muted-foreground mt-2 max-w-2xl">
-            Review, verify, and publish stories submitted by the reporter network.
+            {t("admin.news.subtitle", "Review, verify, and publish stories submitted by the reporter network.")}
           </p>
         </div>
         <div className="flex gap-3">
           <Button variant="outline">
-            <Settings className="mr-2 h-4 w-4" /> Guidelines
+            <Settings className="mr-2 h-4 w-4" /> {t("admin.news.guidelines", "Guidelines")}
           </Button>
           <Button className="bg-emerald-600 hover:bg-emerald-700 text-white">
-            <FileCheck className="mr-2 h-4 w-4" /> Bulk Approve
+            <FileCheck className="mr-2 h-4 w-4" /> {t("admin.news.bulkApprove", "Bulk Approve")}
           </Button>
         </div>
       </motion.div>
@@ -66,7 +68,7 @@ export function AdminNewsPage() {
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-8">
         <motion.div variants={itemVariants} className="xl:col-span-2 space-y-6">
           <div className="bg-slate-50/50 dark:bg-slate-900/50 p-6 rounded-xl border">
-            <h2 className="text-xl font-semibold mb-4">Editorial Queue</h2>
+            <h2 className="text-xl font-semibold mb-4">{t("admin.news.queue", "Editorial Queue")}</h2>
             <NewsFilters />
             <NewsTable news={mockNews} onViewStory={handleViewStory} />
           </div>

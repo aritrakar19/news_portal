@@ -1,16 +1,18 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { mockSettingsActivity } from "../data/mockSettings"
 import { History, UserCircle2 } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function SettingsActivityLog() {
+  const { t } = useTranslation()
   return (
     <Card className="border shadow-sm h-full flex flex-col">
       <CardHeader className="pb-4 border-b border-border">
         <div className="flex items-center gap-2">
           <History className="h-5 w-5 text-blue-500" />
-          <CardTitle className="text-lg">Configuration Audit Log</CardTitle>
+          <CardTitle className="text-lg">{t("admin.settings.activity.title", "Configuration Audit Log")}</CardTitle>
         </div>
-        <CardDescription>Recent changes to platform settings</CardDescription>
+        <CardDescription>{t("admin.settings.activity.subtitle", "Recent changes to platform settings")}</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 p-0">
         <div className="divide-y divide-border">

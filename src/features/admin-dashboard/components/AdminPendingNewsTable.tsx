@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import { useTranslation } from "react-i18next"
 
 const PENDING_NEWS = [
   { id: "NW-1042", headline: "Traffic severely impacted on Main Road due to construction", reporter: "Rahul Verma", category: "City News", time: "2 hours ago" },
@@ -17,21 +18,23 @@ const PENDING_NEWS = [
 ]
 
 export function AdminPendingNewsTable() {
+  const { t } = useTranslation()
+
   return (
     <div className="bg-white dark:bg-card border border-border shadow-sm rounded-xl overflow-hidden flex flex-col h-full">
       <div className="p-6 border-b border-border bg-slate-50 dark:bg-slate-900/50 flex justify-between items-center">
-        <h3 className="font-heading font-bold text-lg">Pending News Reviews</h3>
-        <Badge variant="secondary" className="bg-amber-100 text-amber-800 hover:bg-amber-100 border-0">45 in queue</Badge>
+        <h3 className="font-heading font-bold text-lg">{t("admin.dashboard.pendingNews.title", "Pending News Reviews")}</h3>
+        <Badge variant="secondary" className="bg-amber-100 text-amber-800 hover:bg-amber-100 border-0">{t("admin.dashboard.pendingNews.inQueue", "45 in queue")}</Badge>
       </div>
       <div className="flex-1 overflow-auto">
         <Table>
           <TableHeader>
             <TableRow className="bg-slate-50/50 dark:bg-slate-900/20 hover:bg-transparent">
-              <TableHead className="w-[100px]">ID</TableHead>
-              <TableHead>Headline</TableHead>
-              <TableHead>Reporter</TableHead>
-              <TableHead>Category</TableHead>
-              <TableHead className="text-right">Action</TableHead>
+              <TableHead className="w-[100px]">{t("admin.dashboard.pendingNews.id", "ID")}</TableHead>
+              <TableHead>{t("admin.dashboard.pendingNews.headline", "Headline")}</TableHead>
+              <TableHead>{t("admin.dashboard.pendingNews.reporter", "Reporter")}</TableHead>
+              <TableHead>{t("admin.dashboard.pendingNews.category", "Category")}</TableHead>
+              <TableHead className="text-right">{t("admin.dashboard.pendingNews.action", "Action")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -44,7 +47,7 @@ export function AdminPendingNewsTable() {
                   <Badge variant="outline" className="text-xs font-normal">{news.category}</Badge>
                 </TableCell>
                 <TableCell className="text-right">
-                  <Button size="sm" variant="default" className="bg-blue-600 hover:bg-blue-700 text-white h-8 text-xs">Review</Button>
+                  <Button size="sm" variant="default" className="bg-blue-600 hover:bg-blue-700 text-white h-8 text-xs">{t("admin.dashboard.pendingNews.review", "Review")}</Button>
                 </TableCell>
               </TableRow>
             ))}

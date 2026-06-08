@@ -4,15 +4,17 @@ import {
   PieChart, Pie, Cell, Legend
 } from "recharts"
 import { mockUserGrowth, mockRoleDistribution } from "../data/mockUsers"
+import { useTranslation } from "react-i18next"
 
 const COLORS = ['#3b82f6', '#8b5cf6', '#f59e0b', '#ef4444', '#10b981']
 
 export function UserAnalytics() {
+  const { t } = useTranslation()
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* User Growth Trend */}
       <div className="bg-white dark:bg-card border border-border shadow-sm rounded-xl p-6 lg:col-span-2">
-        <h3 className="text-lg font-heading font-bold mb-6">User Growth & Engagement</h3>
+        <h3 className="text-lg font-heading font-bold mb-6">{t("admin.users.analytics.userGrowth", "User Growth & Engagement")}</h3>
         <div className="h-[300px] w-full">
           <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
             <AreaChart data={mockUserGrowth} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
@@ -30,8 +32,8 @@ export function UserAnalytics() {
               <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#64748b" }} dy={10} />
               <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: "#64748b" }} />
               <Tooltip contentStyle={{ borderRadius: "8px" }} />
-              <Area type="monotone" dataKey="users" stroke="#3b82f6" fillOpacity={1} fill="url(#colorUsers)" name="Total Users" />
-              <Area type="monotone" dataKey="active" stroke="#10b981" fillOpacity={1} fill="url(#colorActive)" name="Active Users" />
+              <Area type="monotone" dataKey="users" stroke="#3b82f6" fillOpacity={1} fill="url(#colorUsers)" name={t("admin.users.analytics.totalUsers", "Total Users")} />
+              <Area type="monotone" dataKey="active" stroke="#10b981" fillOpacity={1} fill="url(#colorActive)" name={t("admin.users.analytics.activeUsers", "Active Users")} />
             </AreaChart>
           </ResponsiveContainer>
         </div>
@@ -39,7 +41,7 @@ export function UserAnalytics() {
 
       {/* Role Distribution */}
       <div className="bg-white dark:bg-card border border-border shadow-sm rounded-xl p-6 lg:col-span-1">
-        <h3 className="text-lg font-heading font-bold mb-6">Role Distribution</h3>
+        <h3 className="text-lg font-heading font-bold mb-6">{t("admin.users.analytics.roleDistribution", "Role Distribution")}</h3>
         <div className="h-[300px] w-full flex items-center justify-center">
           <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
             <PieChart>

@@ -1,4 +1,5 @@
 import { ResponsiveContainer, AreaChart, Area, BarChart, Bar, LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts"
+import { useTranslation } from "react-i18next"
 
 const GROWTH_DATA = [
   { name: "Jan", reporters: 400 },
@@ -27,11 +28,13 @@ const REVENUE_DATA = [
 ]
 
 export function AdminCharts() {
+  const { t } = useTranslation()
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* Reporter Growth */}
       <div className="bg-white dark:bg-card border border-border shadow-sm rounded-xl p-6 flex flex-col">
-        <h3 className="text-sm font-heading font-bold mb-6 text-slate-500 uppercase tracking-wider">Reporter Growth</h3>
+        <h3 className="text-sm font-heading font-bold mb-6 text-slate-500 uppercase tracking-wider">{t("admin.dashboard.charts.reporterGrowth", "Reporter Growth")}</h3>
         <div className="h-[200px] w-full">
           <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
             <AreaChart data={GROWTH_DATA} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
@@ -52,7 +55,7 @@ export function AdminCharts() {
 
       {/* Content Activity */}
       <div className="bg-white dark:bg-card border border-border shadow-sm rounded-xl p-6 flex flex-col">
-        <h3 className="text-sm font-heading font-bold mb-6 text-slate-500 uppercase tracking-wider">Publishing Activity</h3>
+        <h3 className="text-sm font-heading font-bold mb-6 text-slate-500 uppercase tracking-wider">{t("admin.dashboard.charts.pubActivity", "Publishing Activity")}</h3>
         <div className="h-[200px] w-full">
           <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
             <BarChart data={ACTIVITY_DATA} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>
@@ -68,7 +71,7 @@ export function AdminCharts() {
 
       {/* Revenue Analytics */}
       <div className="bg-white dark:bg-card border border-border shadow-sm rounded-xl p-6 flex flex-col">
-        <h3 className="text-sm font-heading font-bold mb-6 text-slate-500 uppercase tracking-wider">Revenue Analytics (₹ Lakhs)</h3>
+        <h3 className="text-sm font-heading font-bold mb-6 text-slate-500 uppercase tracking-wider">{t("admin.dashboard.charts.revenue", "Revenue Analytics (₹ Lakhs)")}</h3>
         <div className="h-[200px] w-full">
           <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
             <LineChart data={REVENUE_DATA} margin={{ top: 0, right: 0, left: -20, bottom: 0 }}>

@@ -1,66 +1,69 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { CheckCircle2, XCircle, Send, Edit, Clock } from "lucide-react"
-
-const activities = [
-  {
-    id: 1,
-    action: "Approved",
-    story: "Infrastructure Project in Mumbai",
-    editor: "Sarah Jenkins",
-    time: "10 mins ago",
-    icon: CheckCircle2,
-    color: "text-emerald-500",
-    bg: "bg-emerald-500/10"
-  },
-  {
-    id: 2,
-    action: "Published",
-    story: "Infrastructure Project in Mumbai",
-    editor: "System",
-    time: "9 mins ago",
-    icon: Send,
-    color: "text-blue-500",
-    bg: "bg-blue-500/10"
-  },
-  {
-    id: 3,
-    action: "Requested Changes",
-    story: "Water Shortage Protest",
-    editor: "Rahul M.",
-    time: "1 hour ago",
-    icon: Edit,
-    color: "text-amber-500",
-    bg: "bg-amber-500/10"
-  },
-  {
-    id: 4,
-    action: "Rejected",
-    story: "Fake University Busted",
-    editor: "Priya S.",
-    time: "3 hours ago",
-    icon: XCircle,
-    color: "text-rose-500",
-    bg: "bg-rose-500/10"
-  },
-  {
-    id: 5,
-    action: "Under Review",
-    story: "Tech Startups Boom",
-    editor: "Sarah Jenkins",
-    time: "4 hours ago",
-    icon: Clock,
-    color: "text-purple-500",
-    bg: "bg-purple-500/10"
-  }
-]
+import { useTranslation } from "react-i18next"
 
 export function RecentEditorialActivity() {
+  const { t } = useTranslation()
+
+  const activities = [
+    {
+      id: 1,
+      action: t("admin.news.activity.action.approved", "Approved"),
+      story: "Infrastructure Project in Mumbai",
+      editor: "Sarah Jenkins",
+      time: "10 mins ago",
+      icon: CheckCircle2,
+      color: "text-emerald-500",
+      bg: "bg-emerald-500/10"
+    },
+    {
+      id: 2,
+      action: t("admin.news.activity.action.published", "Published"),
+      story: "Infrastructure Project in Mumbai",
+      editor: "System",
+      time: "9 mins ago",
+      icon: Send,
+      color: "text-blue-500",
+      bg: "bg-blue-500/10"
+    },
+    {
+      id: 3,
+      action: t("admin.news.activity.action.requestedChanges", "Requested Changes"),
+      story: "Water Shortage Protest",
+      editor: "Rahul M.",
+      time: "1 hour ago",
+      icon: Edit,
+      color: "text-amber-500",
+      bg: "bg-amber-500/10"
+    },
+    {
+      id: 4,
+      action: t("admin.news.activity.action.rejected", "Rejected"),
+      story: "Fake University Busted",
+      editor: "Priya S.",
+      time: "3 hours ago",
+      icon: XCircle,
+      color: "text-rose-500",
+      bg: "bg-rose-500/10"
+    },
+    {
+      id: 5,
+      action: t("admin.news.activity.action.underReview", "Under Review"),
+      story: "Tech Startups Boom",
+      editor: "Sarah Jenkins",
+      time: "4 hours ago",
+      icon: Clock,
+      color: "text-purple-500",
+      bg: "bg-purple-500/10"
+    }
+  ]
+
   return (
     <Card className="col-span-1 border shadow-sm h-full">
       <CardHeader>
-        <CardTitle className="text-xl">Editorial Activity</CardTitle>
+        <CardTitle className="text-xl">{t("admin.news.activity.title", "Editorial Activity")}</CardTitle>
         <CardDescription>
-          Live feed of moderation actions
+          {t("admin.news.activity.subtitle", "Live feed of moderation actions")}
         </CardDescription>
       </CardHeader>
       <CardContent>

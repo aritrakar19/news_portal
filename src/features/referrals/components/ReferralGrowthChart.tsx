@@ -1,4 +1,5 @@
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts"
+import { useTranslation } from "react-i18next"
 
 const GROWTH_DATA = [
   { name: "Week 1", signups: 2, active: 1 },
@@ -10,9 +11,11 @@ const GROWTH_DATA = [
 ]
 
 export function ReferralGrowthChart() {
+  const { t } = useTranslation()
+
   return (
     <div className="bg-white dark:bg-card border border-border shadow-sm rounded-xl p-6 h-full flex flex-col">
-      <h3 className="text-lg font-heading font-bold mb-6">Network Growth</h3>
+      <h3 className="text-lg font-heading font-bold mb-6">{t("referrals.growth.title", "Network Growth")}</h3>
       
       <div className="flex-1 min-h-[300px] w-full">
         <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
@@ -33,8 +36,8 @@ export function ReferralGrowthChart() {
             <Tooltip 
               contentStyle={{ borderRadius: "8px", border: "1px solid #e2e8f0", boxShadow: "0 4px 6px -1px rgb(0 0 0 / 0.1)" }}
             />
-            <Area type="monotone" dataKey="signups" name="Total Signups" stroke="#3b82f6" strokeWidth={2} fillOpacity={1} fill="url(#colorSignups)" />
-            <Area type="monotone" dataKey="active" name="Active Reporters" stroke="#10b981" strokeWidth={2} fillOpacity={1} fill="url(#colorActive)" />
+            <Area type="monotone" dataKey="signups" name={t("referrals.growth.totalSignups", "Total Signups")} stroke="#3b82f6" strokeWidth={2} fillOpacity={1} fill="url(#colorSignups)" />
+            <Area type="monotone" dataKey="active" name={t("referrals.growth.activeReporters", "Active Reporters")} stroke="#10b981" strokeWidth={2} fillOpacity={1} fill="url(#colorActive)" />
           </AreaChart>
         </ResponsiveContainer>
       </div>

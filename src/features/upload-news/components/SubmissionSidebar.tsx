@@ -1,12 +1,15 @@
 import { CheckCircle2, AlertCircle, FileText, UploadCloud, CheckCircle } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function SubmissionSidebar() {
+  const { t } = useTranslation()
+
   return (
     <div className="space-y-6 sticky top-24">
       {/* Workflow Card */}
       <div className="bg-slate-900 text-white rounded-xl p-6 shadow-lg relative overflow-hidden">
         <div className="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl" />
-        <h3 className="font-heading font-bold text-lg mb-6 relative z-10">Submission Workflow</h3>
+        <h3 className="font-heading font-bold text-lg mb-6 relative z-10">{t("upload.sidebar.workflowTitle", "Submission Workflow")}</h3>
         
         <div className="space-y-6 relative z-10">
           <div className="flex gap-4">
@@ -17,8 +20,8 @@ export function SubmissionSidebar() {
               <div className="w-0.5 h-10 bg-slate-700 my-1" />
             </div>
             <div className="pt-1">
-              <p className="font-semibold text-sm text-white">1. Draft & Submit</p>
-              <p className="text-xs text-slate-400 mt-0.5">You upload the story</p>
+              <p className="font-semibold text-sm text-white">{t("upload.sidebar.step1", "1. Draft & Submit")}</p>
+              <p className="text-xs text-slate-400 mt-0.5">{t("upload.sidebar.step1Desc", "You upload the story")}</p>
             </div>
           </div>
           
@@ -30,8 +33,8 @@ export function SubmissionSidebar() {
               <div className="w-0.5 h-10 bg-slate-700 my-1" />
             </div>
             <div className="pt-1">
-              <p className="font-semibold text-sm text-slate-300">2. Editor Review</p>
-              <p className="text-xs text-slate-400 mt-0.5">Quality check (1-2 hrs)</p>
+              <p className="font-semibold text-sm text-slate-300">{t("upload.sidebar.step2", "2. Editor Review")}</p>
+              <p className="text-xs text-slate-400 mt-0.5">{t("upload.sidebar.step2Desc", "Quality check (1-2 hrs)")}</p>
             </div>
           </div>
 
@@ -42,8 +45,8 @@ export function SubmissionSidebar() {
               </div>
             </div>
             <div className="pt-1">
-              <p className="font-semibold text-sm text-slate-300">3. Published</p>
-              <p className="text-xs text-slate-400 mt-0.5">Live on PUBLIC NEWS 1</p>
+              <p className="font-semibold text-sm text-slate-300">{t("upload.sidebar.step3", "3. Published")}</p>
+              <p className="text-xs text-slate-400 mt-0.5">{t("upload.sidebar.step3Desc", "Live on PUBLIC NEWS 1")}</p>
             </div>
           </div>
         </div>
@@ -53,43 +56,43 @@ export function SubmissionSidebar() {
       <div className="bg-white dark:bg-card border border-border shadow-sm rounded-xl p-6">
         <h3 className="font-heading font-bold text-lg mb-4 flex items-center gap-2">
           <AlertCircle className="w-5 h-5 text-accent" />
-          Guidelines
+          {t("upload.sidebar.guidelinesTitle", "Guidelines")}
         </h3>
         <ul className="space-y-3 text-sm text-muted-foreground">
           <li className="flex items-start gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-            <p><strong>Accuracy is paramount.</strong> Ensure all facts, names, and locations are correctly spelled and verified.</p>
+            <p><strong>{t("upload.sidebar.accuracy", "Accuracy is paramount.")}</strong> {t("upload.sidebar.accuracyDesc", "Ensure all facts, names, and locations are correctly spelled and verified.")}</p>
           </li>
           <li className="flex items-start gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-            <p><strong>Images matter.</strong> Upload clear, high-resolution horizontal photos. No watermarks allowed.</p>
+            <p><strong>{t("upload.sidebar.images", "Images matter.")}</strong> {t("upload.sidebar.imagesDesc", "Upload clear, high-resolution horizontal photos. No watermarks allowed.")}</p>
           </li>
           <li className="flex items-start gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
-            <p><strong>Be concise.</strong> Keep headlines under 120 characters and summaries straight to the point.</p>
+            <p><strong>{t("upload.sidebar.concise", "Be concise.")}</strong> {t("upload.sidebar.conciseDesc", "Keep headlines under 120 characters and summaries straight to the point.")}</p>
           </li>
         </ul>
       </div>
 
       {/* Quality Checklist */}
       <div className="bg-slate-50 dark:bg-slate-900/50 border border-border shadow-sm rounded-xl p-6">
-        <h3 className="font-heading font-bold text-lg mb-4">Quality Checklist</h3>
+        <h3 className="font-heading font-bold text-lg mb-4">{t("upload.sidebar.qualityChecklist", "Quality Checklist")}</h3>
         <div className="space-y-3">
           <div className="flex items-center gap-3 text-sm text-muted-foreground">
             <CheckCircle2 className="w-5 h-5 text-slate-300 dark:text-slate-600" />
-            <span>Catchy headline</span>
+            <span>{t("upload.sidebar.check1", "Catchy headline")}</span>
           </div>
           <div className="flex items-center gap-3 text-sm text-muted-foreground">
             <CheckCircle2 className="w-5 h-5 text-slate-300 dark:text-slate-600" />
-            <span>Detailed description</span>
+            <span>{t("upload.sidebar.check2", "Detailed description")}</span>
           </div>
           <div className="flex items-center gap-3 text-sm text-muted-foreground">
             <CheckCircle2 className="w-5 h-5 text-slate-300 dark:text-slate-600" />
-            <span>Categorized correctly</span>
+            <span>{t("upload.sidebar.check3", "Categorized correctly")}</span>
           </div>
           <div className="flex items-center gap-3 text-sm text-muted-foreground">
             <CheckCircle2 className="w-5 h-5 text-slate-300 dark:text-slate-600" />
-            <span>High-quality cover image</span>
+            <span>{t("upload.sidebar.check4", "High-quality cover image")}</span>
           </div>
         </div>
       </div>

@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function CtaSection() {
+  const { t } = useTranslation()
+
   const scrollToForm = () => {
     document.getElementById("apply")?.scrollIntoView({ behavior: "smooth" })
   }
@@ -14,18 +17,17 @@ export function CtaSection() {
 
       <div className="container relative z-10 text-center max-w-3xl mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-heading font-extrabold text-white mb-6 leading-tight">
-          Ready to Start Your Journey?
+          {t("registration.cta.title", "Ready to Start Your Journey?")}
         </h2>
         <p className="text-lg md:text-xl text-primary-foreground/90 mb-10">
-          Join thousands of other reporters who are changing the way news is delivered to the public. 
-          Your press ID is just a few steps away.
+          {t("registration.cta.desc", "Join thousands of other reporters who are changing the way news is delivered to the public. Your press ID is just a few steps away.")}
         </p>
         <Button 
           size="lg" 
           onClick={scrollToForm}
           className="bg-white text-primary hover:bg-slate-100 font-bold text-lg h-14 px-8 rounded-full shadow-xl hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
         >
-          Apply Now <ArrowRight className="ml-2 h-5 w-5" />
+          {t("registration.cta.applyNow", "Apply Now")} <ArrowRight className="ml-2 h-5 w-5" />
         </Button>
       </div>
     </section>

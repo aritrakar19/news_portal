@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
+import { useTranslation } from "react-i18next"
 
 interface RecentApplicationsProps {
   reporters: Reporter[]
@@ -10,20 +11,21 @@ interface RecentApplicationsProps {
 }
 
 export function RecentApplications({ reporters, onViewProfile }: RecentApplicationsProps) {
+  const { t } = useTranslation()
   const pendingReporters = reporters.filter(r => r.accountStatus === "Pending Approval").slice(0, 5)
 
   return (
     <Card className="col-span-1 border shadow-sm">
       <CardHeader>
-        <CardTitle className="text-xl">Recent Applications</CardTitle>
+        <CardTitle className="text-xl">{t("admin.reporters.recentApps.title", "Recent Applications")}</CardTitle>
         <CardDescription>
-          New reporters waiting for approval
+          {t("admin.reporters.recentApps.subtitle", "New reporters waiting for approval")}
         </CardDescription>
       </CardHeader>
       <CardContent>
         {pendingReporters.length === 0 ? (
           <div className="text-center py-8 text-muted-foreground">
-            No pending applications.
+            {t("admin.reporters.recentApps.empty", "No pending applications.")}
           </div>
         ) : (
           <div className="space-y-6">
@@ -42,9 +44,9 @@ export function RecentApplications({ reporters, onViewProfile }: RecentApplicati
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Badge variant="outline" className="text-amber-600 border-amber-200 bg-amber-50 dark:bg-amber-900/10">Pending</Badge>
+                  <Badge variant="outline" className="text-amber-600 border-amber-200 bg-amber-50 dark:bg-amber-900/10">{t("admin.reporters.recentApps.pending", "Pending")}</Badge>
                   <Button variant="ghost" size="sm" onClick={() => onViewProfile(reporter)}>
-                    Review
+                    {t("admin.reporters.recentApps.review", "Review")}
                   </Button>
                 </div>
               </div>

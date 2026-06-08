@@ -1,8 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { mockAdActivity } from "../data/mockAds"
 import { PlusCircle, RefreshCw, AlertCircle, TrendingUp } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function AdActivityFeed() {
+  const { t } = useTranslation()
   const getIconAndColor = (type: string) => {
     switch (type) {
       case "new":
@@ -21,8 +23,8 @@ export function AdActivityFeed() {
   return (
     <Card className="border shadow-sm h-full flex flex-col">
       <CardHeader className="pb-4">
-        <CardTitle className="text-xl">Ad Operations Activity</CardTitle>
-        <CardDescription>Live stream of campaign events</CardDescription>
+        <CardTitle className="text-xl">{t("admin.ads.activity.title", "Ad Operations Activity")}</CardTitle>
+        <CardDescription>{t("admin.ads.activity.subtitle", "Live stream of campaign events")}</CardDescription>
       </CardHeader>
       <CardContent className="flex-1">
         <div className="space-y-6">

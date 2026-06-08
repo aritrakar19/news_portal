@@ -2,16 +2,18 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { mockTopAdvertisers } from "../data/mockAds"
 import { Award, Percent } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function TopAdvertisers() {
+  const { t } = useTranslation()
   return (
     <Card className="border shadow-sm h-full flex flex-col">
       <CardHeader className="pb-4">
         <div className="flex items-center gap-2">
           <Award className="h-5 w-5 text-amber-500" />
-          <CardTitle className="text-xl">Top Advertisers</CardTitle>
+          <CardTitle className="text-xl">{t("admin.ads.topAdvertisers.title", "Top Advertisers")}</CardTitle>
         </div>
-        <CardDescription>Highest spending partners</CardDescription>
+        <CardDescription>{t("admin.ads.topAdvertisers.subtitle", "Highest spending partners")}</CardDescription>
       </CardHeader>
       <CardContent className="flex-1">
         <div className="space-y-6">
@@ -33,7 +35,7 @@ export function TopAdvertisers() {
                 </div>
                 <div>
                   <div className="font-medium">{advertiser.name}</div>
-                  <div className="text-xs text-muted-foreground">{advertiser.campaigns} campaigns</div>
+                  <div className="text-xs text-muted-foreground">{advertiser.campaigns} {t("admin.ads.topAdvertisers.campaigns", "campaigns")}</div>
                 </div>
               </div>
               <div className="text-right">
@@ -42,7 +44,7 @@ export function TopAdvertisers() {
                 </div>
                 <div className="text-xs text-muted-foreground flex items-center justify-end gap-1 mt-0.5">
                   <Percent className="h-3 w-3" />
-                  {advertiser.avgCtr}% avg CTR
+                  {advertiser.avgCtr}% {t("admin.ads.topAdvertisers.avgCtr", "avg CTR")}
                 </div>
               </div>
             </div>

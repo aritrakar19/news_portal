@@ -1,58 +1,61 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Users, UserCheck, UserMinus, ShieldAlert, Shield, ShieldHalf } from "lucide-react"
-
-const stats = [
-  {
-    title: "Total Users",
-    value: "4,200",
-    icon: Users,
-    description: "+15% vs last month",
-    color: "text-blue-500",
-    bg: "bg-blue-500/10",
-  },
-  {
-    title: "Active Users",
-    value: "3,400",
-    icon: UserCheck,
-    description: "Logged in last 30 days",
-    color: "text-emerald-500",
-    bg: "bg-emerald-500/10",
-  },
-  {
-    title: "Suspended Users",
-    value: "42",
-    icon: UserMinus,
-    description: "Requires review",
-    color: "text-rose-500",
-    bg: "bg-rose-500/10",
-  },
-  {
-    title: "Admin Accounts",
-    value: "5",
-    icon: ShieldAlert,
-    description: "Full system access",
-    color: "text-purple-500",
-    bg: "bg-purple-500/10",
-  },
-  {
-    title: "Editor Accounts",
-    value: "45",
-    icon: Shield,
-    description: "Content moderation access",
-    color: "text-amber-500",
-    bg: "bg-amber-500/10",
-  },
-  {
-    title: "Reporter Accounts",
-    value: "3,800",
-    icon: ShieldHalf,
-    description: "Content submission access",
-    color: "text-indigo-500",
-    bg: "bg-indigo-500/10",
-  },
-]
+import { useTranslation } from "react-i18next"
 
 export function UserStatsCards() {
+  const { t } = useTranslation()
+
+  const stats = [
+    {
+      title: t("admin.users.stats.totalUsers", "Total Users"),
+      value: "4,200",
+      icon: Users,
+      description: t("admin.users.stats.totalUsersDesc", "+15% vs last month"),
+      color: "text-blue-500",
+      bg: "bg-blue-500/10",
+    },
+    {
+      title: t("admin.users.stats.activeUsers", "Active Users"),
+      value: "3,400",
+      icon: UserCheck,
+      description: t("admin.users.stats.activeUsersDesc", "Logged in last 30 days"),
+      color: "text-emerald-500",
+      bg: "bg-emerald-500/10",
+    },
+    {
+      title: t("admin.users.stats.suspendedUsers", "Suspended Users"),
+      value: "42",
+      icon: UserMinus,
+      description: t("admin.users.stats.suspendedUsersDesc", "Requires review"),
+      color: "text-rose-500",
+      bg: "bg-rose-500/10",
+    },
+    {
+      title: t("admin.users.stats.adminAccounts", "Admin Accounts"),
+      value: "5",
+      icon: ShieldAlert,
+      description: t("admin.users.stats.adminAccountsDesc", "Full system access"),
+      color: "text-purple-500",
+      bg: "bg-purple-500/10",
+    },
+    {
+      title: t("admin.users.stats.editorAccounts", "Editor Accounts"),
+      value: "45",
+      icon: Shield,
+      description: t("admin.users.stats.editorAccountsDesc", "Content moderation access"),
+      color: "text-amber-500",
+      bg: "bg-amber-500/10",
+    },
+    {
+      title: t("admin.users.stats.reporterAccounts", "Reporter Accounts"),
+      value: "3,800",
+      icon: ShieldHalf,
+      description: t("admin.users.stats.reporterAccountsDesc", "Content submission access"),
+      color: "text-indigo-500",
+      bg: "bg-indigo-500/10",
+    },
+  ]
+
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {stats.map((stat) => {

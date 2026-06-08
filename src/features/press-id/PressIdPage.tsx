@@ -4,8 +4,11 @@ import { VerificationPanel } from "./components/VerificationPanel"
 import { SecurityFeatures } from "./components/SecurityFeatures"
 import { ActionButtons } from "./components/ActionButtons"
 import "./components/flip-utilities.css"
+import { useTranslation } from "react-i18next"
 
 export function PressIdPage() {
+  const { t } = useTranslation()
+
   return (
     <div className="pb-12">
       <motion.div 
@@ -14,9 +17,9 @@ export function PressIdPage() {
         transition={{ duration: 0.5 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">Digital Press Identity</h1>
+        <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{t("press.title", "Digital Press Identity")}</h1>
         <p className="text-muted-foreground mt-2 max-w-2xl">
-          Your official PUBLIC NEWS 1 reporter identification. This digital card serves as your authorized press credential for reporting on the field.
+          {t("press.subtitle", "Your official PUBLIC NEWS 1 reporter identification. This digital card serves as your authorized press credential for reporting on the field.")}
         </p>
       </motion.div>
 
@@ -32,7 +35,7 @@ export function PressIdPage() {
             <PressCard />
           </div>
           <p className="text-sm text-muted-foreground text-center animate-pulse">
-            Click the card to flip
+            {t("press.flipHint", "Click the card to flip")}
           </p>
         </motion.div>
 

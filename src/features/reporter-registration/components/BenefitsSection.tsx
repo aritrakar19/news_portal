@@ -1,42 +1,44 @@
 import { ShieldCheck, PenTool, Banknote, Users } from "lucide-react"
-
-const BENEFITS = [
-  {
-    icon: ShieldCheck,
-    title: "Official Digital Press ID",
-    description: "Get instantly recognized anywhere. Your Press ID is secured and globally verifiable.",
-    color: "bg-blue-500/10 text-blue-500"
-  },
-  {
-    icon: PenTool,
-    title: "Publishing Rights",
-    description: "Submit news directly to our editorial team and see your stories published nationally.",
-    color: "bg-red-500/10 text-red-500"
-  },
-  {
-    icon: Banknote,
-    title: "Direct Earnings",
-    description: "Monetize your journalism. Earn competitive payouts based on story engagement.",
-    color: "bg-green-500/10 text-green-500"
-  },
-  {
-    icon: Users,
-    title: "Refer & Earn Program",
-    description: "Grow the network. Invite trusted reporters in your area and earn referral bonuses.",
-    color: "bg-purple-500/10 text-purple-500"
-  }
-]
+import { useTranslation } from "react-i18next"
 
 export function BenefitsSection() {
+  const { t } = useTranslation()
+
+  const BENEFITS = [
+    {
+      icon: ShieldCheck,
+      title: t("registration.benefits.pressIdTitle", "Official Digital Press ID"),
+      description: t("registration.benefits.pressIdDesc", "Get instantly recognized anywhere. Your Press ID is secured and globally verifiable."),
+      color: "bg-blue-500/10 text-blue-500"
+    },
+    {
+      icon: PenTool,
+      title: t("registration.benefits.publishingTitle", "Publishing Rights"),
+      description: t("registration.benefits.publishingDesc", "Submit news directly to our editorial team and see your stories published nationally."),
+      color: "bg-red-500/10 text-red-500"
+    },
+    {
+      icon: Banknote,
+      title: t("registration.benefits.earningsTitle", "Direct Earnings"),
+      description: t("registration.benefits.earningsDesc", "Monetize your journalism. Earn competitive payouts based on story engagement."),
+      color: "bg-green-500/10 text-green-500"
+    },
+    {
+      icon: Users,
+      title: t("registration.benefits.referTitle", "Refer & Earn Program"),
+      description: t("registration.benefits.referDesc", "Grow the network. Invite trusted reporters in your area and earn referral bonuses."),
+      color: "bg-purple-500/10 text-purple-500"
+    }
+  ]
   return (
     <section className="py-20 bg-white dark:bg-card">
       <div className="container max-w-5xl">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-heading font-extrabold mb-6">
-            Why Join PUBLIC NEWS 1?
+            {t("registration.benefits.title", "Why Join PUBLIC NEWS 1?")}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            We provide our reporters with the best tools, recognition, and financial rewards in the industry.
+            {t("registration.benefits.subtitle", "We provide our reporters with the best tools, recognition, and financial rewards in the industry.")}
           </p>
         </div>
 

@@ -1,5 +1,6 @@
-import { useState } from "react"
 import { UploadCloud, Image as ImageIcon, Video, X } from "lucide-react"
+import { useTranslation } from "react-i18next"
+import { useState } from "react"
 
 interface FileUploadZoneProps {
   label: string
@@ -9,6 +10,7 @@ interface FileUploadZoneProps {
 }
 
 export function FileUploadZone({ label, accept, icon, multiple = false }: FileUploadZoneProps) {
+  const { t } = useTranslation()
   const [isDragging, setIsDragging] = useState(false)
   const [files, setFiles] = useState<File[]>([])
 
@@ -39,7 +41,7 @@ export function FileUploadZone({ label, accept, icon, multiple = false }: FileUp
   }
 
   const removeFile = (index: number) => {
-    setFiles(files.filter((_, i) => i !== index))
+    setFiles(files.filter((_: File, i: number) => i !== index))
   }
 
   const Icon = icon === "image" ? ImageIcon : Video
@@ -70,17 +72,17 @@ export function FileUploadZone({ label, accept, icon, multiple = false }: FileUp
             <UploadCloud className="w-6 h-6 text-slate-500" />
           </div>
           <p className="text-sm font-medium text-foreground mb-1">
-            Click or drag and drop to upload
+            {t("upload.file.clickOrDrag", "Click or drag and drop to upload")}
           </p>
           <p className="text-xs text-muted-foreground">
-            {accept.includes("image") ? "PNG, JPG up to 10MB" : "MP4, WebM up to 100MB"}
+            {accept.includes("image") ? t("upload.file.imageLimit", "PNG, JPG up to 10MB") : t("upload.file.videoLimit", "MP4, WebM up to 100MB")}
           </p>
         </div>
       )}
 
       {files.length > 0 && (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3">
-          {files.map((file, index) => (
+          {files.map((file: File, index: number) => (
             <div key={index} className="flex items-center justify-between p-3 bg-slate-50 dark:bg-slate-900 border border-border rounded-lg">
               <div className="flex items-center gap-3 overflow-hidden">
                 <div className="w-10 h-10 bg-slate-200 dark:bg-slate-800 rounded flex items-center justify-center shrink-0">

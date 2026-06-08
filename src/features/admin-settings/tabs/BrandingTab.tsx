@@ -3,8 +3,10 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { UploadCloud } from "lucide-react"
 import { mockSystemConfig } from "../data/mockSettings"
+import { useTranslation } from "react-i18next"
 
 export function BrandingTab() {
+  const { t } = useTranslation()
   const { branding } = mockSystemConfig
 
   const FileUploadZone = ({ label, desc }: { label: string, desc: string }) => (
@@ -24,34 +26,34 @@ export function BrandingTab() {
       <div className="space-y-6 lg:col-span-2">
         <Card className="border shadow-sm">
           <CardHeader>
-            <CardTitle>Logos & Icons</CardTitle>
-            <CardDescription>Upload brand assets used across the platform.</CardDescription>
+            <CardTitle>{t("admin.settings.branding.logosTitle", "Logos & Icons")}</CardTitle>
+            <CardDescription>{t("admin.settings.branding.logosDesc", "Upload brand assets used across the platform.")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FileUploadZone label="Platform Logo (Light Theme)" desc="PNG, SVG up to 2MB. Recommended 250x60px." />
-              <FileUploadZone label="Platform Logo (Dark Theme)" desc="PNG, SVG up to 2MB. Recommended 250x60px." />
+              <FileUploadZone label={t("admin.settings.branding.logoLight", "Platform Logo (Light Theme)")} desc={t("admin.settings.branding.logoDesc", "PNG, SVG up to 2MB. Recommended 250x60px.")} />
+              <FileUploadZone label={t("admin.settings.branding.logoDark", "Platform Logo (Dark Theme)")} desc={t("admin.settings.branding.logoDesc", "PNG, SVG up to 2MB. Recommended 250x60px.")} />
             </div>
-            <FileUploadZone label="Favicon" desc="ICO or PNG up to 1MB. Must be square (32x32px or 64x64px)." />
+            <FileUploadZone label={t("admin.settings.branding.favicon", "Favicon")} desc={t("admin.settings.branding.faviconDesc", "ICO or PNG up to 1MB. Must be square (32x32px or 64x64px).")} />
           </CardContent>
         </Card>
 
         <Card className="border shadow-sm">
           <CardHeader>
-            <CardTitle>Theme Colors</CardTitle>
-            <CardDescription>Define the primary and secondary brand colors.</CardDescription>
+            <CardTitle>{t("admin.settings.branding.colorsTitle", "Theme Colors")}</CardTitle>
+            <CardDescription>{t("admin.settings.branding.colorsDesc", "Define the primary and secondary brand colors.")}</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="primaryColor">Primary Color (Hex)</Label>
+                <Label htmlFor="primaryColor">{t("admin.settings.branding.primaryColor", "Primary Color (Hex)")}</Label>
                 <div className="flex gap-2">
                   <div className="h-10 w-10 rounded-md border shadow-inner" style={{ backgroundColor: branding.primaryColor }} />
                   <Input id="primaryColor" defaultValue={branding.primaryColor} className="flex-1 font-mono uppercase" />
                 </div>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="secondaryColor">Secondary Color (Hex)</Label>
+                <Label htmlFor="secondaryColor">{t("admin.settings.branding.secondaryColor", "Secondary Color (Hex)")}</Label>
                 <div className="flex gap-2">
                   <div className="h-10 w-10 rounded-md border shadow-inner" style={{ backgroundColor: branding.secondaryColor }} />
                   <Input id="secondaryColor" defaultValue={branding.secondaryColor} className="flex-1 font-mono uppercase" />
@@ -65,7 +67,7 @@ export function BrandingTab() {
       <div className="lg:col-span-1">
         <Card className="border shadow-sm sticky top-6">
           <CardHeader className="pb-4 border-b">
-            <CardTitle className="text-base">Live Preview</CardTitle>
+            <CardTitle className="text-base">{t("admin.settings.branding.livePreview", "Live Preview")}</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <div className="bg-slate-100 dark:bg-slate-800 h-48 flex items-center justify-center p-6 border-b">
@@ -86,7 +88,7 @@ export function BrandingTab() {
                 <div className="h-4 w-1/2 rounded bg-slate-200 dark:bg-slate-800"></div>
                 <div className="pt-4">
                   <div className="h-10 w-full rounded-md flex items-center justify-center text-white text-sm font-medium" style={{ backgroundColor: branding.primaryColor }}>
-                    Primary Button
+                    {t("admin.settings.branding.primaryButton", "Primary Button")}
                   </div>
                 </div>
               </div>

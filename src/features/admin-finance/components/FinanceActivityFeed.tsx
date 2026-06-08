@@ -1,8 +1,10 @@
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { mockFinanceActivity } from "../data/mockFinance"
 import { Banknote, ShieldAlert, ArrowUpRight, ArrowDownLeft } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 export function FinanceActivityFeed() {
+  const { t } = useTranslation()
   const getIconAndColor = (type: string) => {
     switch (type) {
       case "withdrawal":
@@ -21,8 +23,8 @@ export function FinanceActivityFeed() {
   return (
     <Card className="border shadow-sm h-full flex flex-col">
       <CardHeader className="pb-4">
-        <CardTitle className="text-xl">Finance Activity</CardTitle>
-        <CardDescription>Live stream of financial events</CardDescription>
+        <CardTitle className="text-xl">{t("admin.finance.activity.title", "Finance Activity")}</CardTitle>
+        <CardDescription>{t("admin.finance.activity.subtitle", "Live stream of financial events")}</CardDescription>
       </CardHeader>
       <CardContent className="flex-1">
         <div className="space-y-6">

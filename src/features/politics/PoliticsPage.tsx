@@ -10,6 +10,7 @@ import {
   Mail,
   ArrowRight
 } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -169,6 +170,7 @@ const NEWS_GRID = [
 
 export function PoliticsPage() {
   const [, setActiveState] = useState("Delhi")
+  const { t } = useTranslation()
 
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pb-16">
@@ -177,7 +179,7 @@ export function PoliticsPage() {
       <div className="bg-red-600 text-white py-2.5 overflow-hidden sticky top-[64px] z-20 shadow-md">
         <div className="container mx-auto px-4 flex items-center">
           <Badge className="bg-white text-red-600 hover:bg-gray-100 uppercase tracking-widest font-bold mr-4 rounded-sm whitespace-nowrap shrink-0">
-            Breaking
+            {t("politics.breaking", "Breaking")}
           </Badge>
           <div className="flex-1 overflow-hidden relative">
             <motion.div 
@@ -201,10 +203,10 @@ export function PoliticsPage() {
         {/* Page Title */}
         <div className="mb-8 flex items-center justify-between border-b-2 border-slate-900 dark:border-white pb-4">
           <h1 className="text-4xl md:text-5xl font-black font-heading tracking-tight text-slate-900 dark:text-white uppercase">
-            Politics
+            {t("politics.title", "Politics")}
           </h1>
           <div className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-            <TrendingUp className="h-4 w-4" /> Leading the Conversation
+            <TrendingUp className="h-4 w-4" /> {t("politics.leadingConv", "Leading the Conversation")}
           </div>
         </div>
 
@@ -239,10 +241,10 @@ export function PoliticsPage() {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center text-slate-300 text-sm gap-4">
                     <span className="flex items-center gap-1.5"><Clock className="h-4 w-4" /> {HERO_STORY.time}</span>
-                    <span className="flex items-center gap-1.5"><FileText className="h-4 w-4" /> By {HERO_STORY.author}</span>
+                    <span className="flex items-center gap-1.5"><FileText className="h-4 w-4" /> {t("politics.by", "By")} {HERO_STORY.author}</span>
                   </div>
                   <Button className="bg-white text-slate-900 hover:bg-gray-100 rounded-full font-bold group-hover:translate-x-1 transition-transform">
-                    Read Story <ArrowRight className="ml-2 h-4 w-4" />
+                    {t("politics.readStory", "Read Story")} <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
               </div>
@@ -252,7 +254,7 @@ export function PoliticsPage() {
           {/* 2. Top Political Headlines (Sidebar) */}
           <div className="lg:col-span-4 flex flex-col space-y-6">
             <div className="flex items-center justify-between border-b border-border pb-2">
-              <h3 className="text-xl font-bold font-heading uppercase text-slate-900 dark:text-white">Top Headlines</h3>
+              <h3 className="text-xl font-bold font-heading uppercase text-slate-900 dark:text-white">{t("politics.topHeadlines", "Top Headlines")}</h3>
             </div>
             
             <div className="flex flex-col gap-6 flex-1">
@@ -282,11 +284,11 @@ export function PoliticsPage() {
 
             {/* Newsletter Mini */}
             <div className="bg-slate-100 dark:bg-slate-900 p-5 rounded-xl border border-border mt-auto">
-              <h4 className="font-bold font-heading mb-2">Politics Newsletter</h4>
-              <p className="text-sm text-muted-foreground mb-4">Get the daily briefing in your inbox.</p>
+              <h4 className="font-bold font-heading mb-2">{t("politics.newsletterTitle", "Politics Newsletter")}</h4>
+              <p className="text-sm text-muted-foreground mb-4">{t("politics.newsletterDesc", "Get the daily briefing in your inbox.")}</p>
               <div className="flex gap-2">
-                <Input placeholder="Email address" className="bg-white dark:bg-slate-950" />
-                <Button className="shrink-0 bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90">Subscribe</Button>
+                <Input placeholder={t("politics.emailPlaceholder", "Email address")} className="bg-white dark:bg-slate-950" />
+                <Button className="shrink-0 bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90">{t("politics.subscribeBtn", "Subscribe")}</Button>
               </div>
             </div>
           </div>
@@ -296,9 +298,9 @@ export function PoliticsPage() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6 border-b border-border pb-2">
             <h3 className="text-2xl font-bold font-heading uppercase text-slate-900 dark:text-white flex items-center gap-2">
-              <PlayCircle className="h-6 w-6 text-red-600" /> Political Pulse (Video)
+              <PlayCircle className="h-6 w-6 text-red-600" /> {t("politics.videoNews", "Political Pulse (Video)")}
             </h3>
-            <Button variant="ghost" className="text-sm hover:text-red-600 font-medium">View All <ChevronRight className="h-4 w-4 ml-1" /></Button>
+            <Button variant="ghost" className="text-sm hover:text-red-600 font-medium">{t("politics.viewAll", "View All")} <ChevronRight className="h-4 w-4 ml-1" /></Button>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -336,7 +338,7 @@ export function PoliticsPage() {
           <div className="lg:col-span-8">
             <div className="flex items-center justify-between mb-6 border-b border-border pb-2">
               <h3 className="text-2xl font-bold font-heading uppercase text-slate-900 dark:text-white">
-                Latest News
+                {t("politics.latestNews", "Latest News")}
               </h3>
             </div>
             
@@ -369,7 +371,7 @@ export function PoliticsPage() {
             {/* 9. Load More Button */}
             <div className="mt-10 text-center">
               <Button variant="outline" className="rounded-full px-8 py-6 font-bold text-base border-2 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-                Load More Stories
+                {t("politics.loadMore", "Load More Stories")}
               </Button>
             </div>
           </div>
@@ -381,7 +383,7 @@ export function PoliticsPage() {
             <div>
               <div className="mb-6 border-b border-border pb-2">
                 <h3 className="text-xl font-bold font-heading uppercase text-slate-900 dark:text-white text-emerald-600 dark:text-emerald-500">
-                  Opinion & Analysis
+                  {t("politics.opinionAnalysis", "Opinion & Analysis")}
                 </h3>
               </div>
               <div className="space-y-6">
@@ -407,7 +409,7 @@ export function PoliticsPage() {
               <div className="mb-6 border-b border-border pb-2 flex items-center gap-2">
                 <MapPin className="h-5 w-5 text-blue-600" />
                 <h3 className="text-xl font-bold font-heading uppercase text-slate-900 dark:text-white">
-                  State Focus
+                  {t("politics.stateFocus", "State Focus")}
                 </h3>
               </div>
               <Card className="border border-border/50 shadow-sm overflow-hidden bg-white/50 dark:bg-slate-900/50">
@@ -437,7 +439,7 @@ export function PoliticsPage() {
                       </div>
                       <div className="p-3 bg-slate-50 dark:bg-slate-800/50 border-t border-border/50 text-center">
                         <Button variant="link" className="text-xs font-bold text-blue-600">
-                          More from {state} <ChevronRight className="h-3 w-3 ml-1" />
+                          {t("politics.moreFrom", "More from")} {state} <ChevronRight className="h-3 w-3 ml-1" />
                         </Button>
                       </div>
                     </TabsContent>
@@ -454,23 +456,23 @@ export function PoliticsPage() {
       <div className="bg-slate-900 dark:bg-slate-950 text-white py-16 border-t border-slate-800">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <Mail className="h-10 w-10 text-red-500 mx-auto mb-4" />
-          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">Subscribe to Political Briefing</h2>
+          <h2 className="text-3xl md:text-4xl font-bold font-heading mb-4">{t("politics.subscribeTitle", "Subscribe to Political Briefing")}</h2>
           <p className="text-slate-400 mb-8 max-w-2xl mx-auto text-lg">
-            Get the most important political stories of the day, curated by our senior editors, delivered straight to your inbox every evening.
+            {t("politics.subscribeDesc", "Get the most important political stories of the day, curated by our senior editors, delivered straight to your inbox every evening.")}
           </p>
           <form className="flex flex-col sm:flex-row max-w-md mx-auto gap-3">
             <Input 
               type="email" 
-              placeholder="Your email address" 
+              placeholder={t("politics.emailPlaceholder", "Your email address")} 
               className="bg-slate-800 border-slate-700 text-white placeholder:text-slate-500 h-12" 
               required
             />
             <Button type="button" className="bg-red-600 hover:bg-red-700 text-white font-bold h-12 px-8">
-              Subscribe
+              {t("politics.subscribeBtn", "Subscribe")}
             </Button>
           </form>
           <p className="text-xs text-slate-500 mt-4">
-            By subscribing, you agree to our Terms of Service and Privacy Policy.
+            {t("politics.subscribeTerms", "By subscribing, you agree to our Terms of Service and Privacy Policy.")}
           </p>
         </div>
       </div>

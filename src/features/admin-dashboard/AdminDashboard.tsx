@@ -5,7 +5,10 @@ import { AdminCharts } from "./components/AdminCharts"
 import { AdminPendingNewsTable } from "./components/AdminPendingNewsTable"
 import { AdminRecentApplicationsTable } from "./components/AdminRecentApplicationsTable"
 
+import { useTranslation } from "react-i18next"
+
 export function AdminDashboard() {
+  const { t } = useTranslation()
   const containerVariants: any = {
     hidden: { opacity: 0 },
     visible: {
@@ -32,9 +35,9 @@ export function AdminDashboard() {
     >
       <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">Admin Command Center</h1>
+          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{t("admin.dashboard.title", "Admin Command Center")}</h1>
           <p className="text-muted-foreground mt-2 max-w-2xl">
-            Platform overview. Manage reporters, approve news, and monitor revenue from a single dashboard.
+            {t("admin.dashboard.subtitle", "Platform overview. Manage reporters, approve news, and monitor revenue from a single dashboard.")}
           </p>
         </div>
       </motion.div>

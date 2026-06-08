@@ -7,21 +7,24 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { Badge } from "@/components/ui/badge"
-
-const LEDGER_DATA = [
-  { id: "WDL-8429", date: "Jun 05, 2026", type: "Withdrawal", method: "Bank Transfer", amount: "-₹10,000", status: "Completed" },
-  { id: "WDL-8110", date: "May 20, 2026", type: "Withdrawal", method: "UPI", amount: "-₹5,000", status: "Completed" },
-  { id: "WDL-7592", date: "May 05, 2026", type: "Withdrawal", method: "Bank Transfer", amount: "-₹8,550", status: "Completed" },
-  { id: "WDL-7104", date: "Apr 20, 2026", type: "Withdrawal", method: "UPI", amount: "-₹3,000", status: "Failed" },
-  { id: "WDL-6888", date: "Apr 05, 2026", type: "Withdrawal", method: "Bank Transfer", amount: "-₹5,000", status: "Completed" },
-]
+import { useTranslation } from "react-i18next"
 
 export function TransactionLedger() {
+  const { t } = useTranslation()
+
+  const LEDGER_DATA = [
+    { id: "WDL-8429", date: t("wallet.ledger.date1", "Jun 05, 2026"), type: t("wallet.ledger.typeWithdrawal", "Withdrawal"), method: t("wallet.ledger.methodBank", "Bank Transfer"), amount: "-₹10,000", status: t("dashboard.earnings.completed", "Completed") },
+    { id: "WDL-8110", date: t("wallet.ledger.date2", "May 20, 2026"), type: t("wallet.ledger.typeWithdrawal", "Withdrawal"), method: t("wallet.ledger.methodUpi", "UPI"), amount: "-₹5,000", status: t("dashboard.earnings.completed", "Completed") },
+    { id: "WDL-7592", date: t("wallet.ledger.date3", "May 05, 2026"), type: t("wallet.ledger.typeWithdrawal", "Withdrawal"), method: t("wallet.ledger.methodBank", "Bank Transfer"), amount: "-₹8,550", status: t("dashboard.earnings.completed", "Completed") },
+    { id: "WDL-7104", date: t("wallet.ledger.date4", "Apr 20, 2026"), type: t("wallet.ledger.typeWithdrawal", "Withdrawal"), method: t("wallet.ledger.methodUpi", "UPI"), amount: "-₹3,000", status: t("wallet.ledger.statusFailed", "Failed") },
+    { id: "WDL-6888", date: t("wallet.ledger.date5", "Apr 05, 2026"), type: t("wallet.ledger.typeWithdrawal", "Withdrawal"), method: t("wallet.ledger.methodBank", "Bank Transfer"), amount: "-₹5,000", status: t("dashboard.earnings.completed", "Completed") },
+  ]
+
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case "Completed":
+      case t("dashboard.earnings.completed", "Completed"):
         return <Badge className="bg-emerald-100 text-emerald-800 hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-400 border-0">{status}</Badge>
-      case "Failed":
+      case t("wallet.ledger.statusFailed", "Failed"):
         return <Badge className="bg-red-100 text-red-800 hover:bg-red-100 dark:bg-red-900/30 dark:text-red-400 border-0">{status}</Badge>
       default:
         return <Badge variant="outline">{status}</Badge>
@@ -31,16 +34,16 @@ export function TransactionLedger() {
   return (
     <div className="bg-white dark:bg-card border border-border shadow-sm rounded-xl overflow-hidden">
       <div className="p-6 border-b border-border bg-slate-50 dark:bg-slate-900/50">
-        <h3 className="font-heading font-bold text-lg">Recent Withdrawals</h3>
+        <h3 className="font-heading font-bold text-lg">{t("wallet.ledger.title", "Recent Withdrawals")}</h3>
       </div>
       <Table>
         <TableHeader>
           <TableRow className="bg-slate-50/50 dark:bg-slate-900/20 hover:bg-transparent">
-            <TableHead className="w-[120px]">Transfer ID</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
+            <TableHead className="w-[120px]">{t("wallet.ledger.transferId", "Transfer ID")}</TableHead>
+            <TableHead>{t("dashboard.earnings.date", "Date")}</TableHead>
+            <TableHead>{t("wallet.ledger.method", "Method")}</TableHead>
+            <TableHead>{t("dashboard.earnings.status", "Status")}</TableHead>
+            <TableHead className="text-right">{t("dashboard.earnings.amount", "Amount")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

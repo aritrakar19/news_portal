@@ -13,6 +13,7 @@ import {
   Mail,
   TerminalSquare
 } from "lucide-react"
+import { useTranslation } from "react-i18next"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -180,14 +181,16 @@ const TECH_GRID = [
 ]
 
 export function TechPage() {
+  const { t } = useTranslation()
+
   return (
     <div className="bg-slate-50 dark:bg-slate-950 min-h-screen pb-16 font-sans selection:bg-cyan-500/30">
       
       {/* Dynamic Top Bar */}
       <div className="bg-gradient-to-r from-cyan-600 to-blue-700 text-white py-1.5 px-4 text-center text-sm font-medium tracking-wide">
         <span className="animate-pulse inline-block mr-2 text-cyan-200">●</span> 
-        Live: Tech Developer Conference 2026 Keynote starting in 30 minutes. 
-        <a href="#" className="underline ml-2 font-bold hover:text-cyan-200">Watch Stream</a>
+        {t("tech.liveBanner", "Live: Tech Developer Conference 2026 Keynote starting in 30 minutes.")} 
+        <a href="#" className="underline ml-2 font-bold hover:text-cyan-200">{t("tech.watchStream", "Watch Stream")}</a>
       </div>
 
       <div className="container mx-auto px-4 py-8 max-w-7xl">
@@ -196,19 +199,19 @@ export function TechPage() {
         <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between border-b border-border pb-4 gap-4">
           <div>
             <h1 className="text-4xl md:text-5xl font-black font-heading tracking-tight text-slate-900 dark:text-white flex items-center gap-3 uppercase">
-              Technology <TerminalSquare className="h-8 w-8 text-cyan-500 hidden md:block" />
+              {t("tech.title", "Technology")} <TerminalSquare className="h-8 w-8 text-cyan-500 hidden md:block" />
             </h1>
-            <p className="text-muted-foreground mt-1 text-sm font-medium">Innovation, AI, Gadgets & Future Tech</p>
+            <p className="text-muted-foreground mt-1 text-sm font-medium">{t("tech.subtitle", "Innovation, AI, Gadgets & Future Tech")}</p>
           </div>
           <div className="flex gap-2">
             <Badge variant="outline" className="border-cyan-500/30 text-cyan-600 dark:text-cyan-400 font-bold bg-cyan-500/5">
-              #AI
+              {t("tech.tagAi", "#AI")}
             </Badge>
             <Badge variant="outline" className="border-purple-500/30 text-purple-600 dark:text-purple-400 font-bold bg-purple-500/5">
-              #Gadgets
+              {t("tech.tagGadgets", "#Gadgets")}
             </Badge>
             <Badge variant="outline" className="border-blue-500/30 text-blue-600 dark:text-blue-400 font-bold bg-blue-500/5">
-              #Cybersecurity
+              {t("tech.tagCybersecurity", "#Cybersecurity")}
             </Badge>
           </div>
         </div>
@@ -245,7 +248,7 @@ export function TechPage() {
                     <span className="flex items-center gap-1.5"><Clock className="h-4 w-4 text-cyan-500" /> {HERO_STORY.time}</span>
                   </div>
                   <Button className="bg-white text-slate-900 hover:bg-cyan-50 rounded-full font-bold group-hover:px-6 transition-all duration-300">
-                    Read Article <ArrowRight className="ml-2 h-4 w-4" />
+                    {t("tech.readArticle", "Read Article")} <ArrowRight className="ml-2 h-4 w-4" />
                   </Button>
                 </div>
               </div>
@@ -260,7 +263,7 @@ export function TechPage() {
               <CardContent className="p-0 flex flex-col h-full">
                 <div className="p-5 border-b border-border/50">
                   <h3 className="text-lg font-black font-heading uppercase text-slate-900 dark:text-white flex items-center gap-2">
-                    <Zap className="h-5 w-5 text-cyan-500" /> The Wire
+                    <Zap className="h-5 w-5 text-cyan-500" /> {t("tech.theWire", "The Wire")}
                   </h3>
                 </div>
                 <div className="flex flex-col divide-y divide-border/50 flex-1">
@@ -283,7 +286,7 @@ export function TechPage() {
               <CardContent className="p-0">
                 <div className="p-4 border-b border-slate-800 bg-slate-950/50">
                   <h3 className="text-base font-bold font-heading uppercase text-white flex items-center gap-2">
-                    <ShieldAlert className="h-4 w-4 text-red-500" /> Threat Intelligence
+                    <ShieldAlert className="h-4 w-4 text-red-500" /> {t("tech.threatIntel", "Threat Intelligence")}
                   </h3>
                 </div>
                 <div className="flex flex-col divide-y divide-slate-800/50">
@@ -318,7 +321,7 @@ export function TechPage() {
               <div className="flex items-center gap-2">
                 <Cpu className="h-6 w-6 text-purple-500" />
                 <h3 className="text-2xl font-black font-heading uppercase text-slate-900 dark:text-white">
-                  Artificial Intelligence
+                  {t("tech.artificialIntelligence", "Artificial Intelligence")}
                 </h3>
               </div>
               <ChevronRight className="h-5 w-5 text-muted-foreground cursor-pointer" />
@@ -349,7 +352,7 @@ export function TechPage() {
               <div className="flex items-center gap-2">
                 <Smartphone className="h-6 w-6 text-blue-500" />
                 <h3 className="text-2xl font-black font-heading uppercase text-slate-900 dark:text-white">
-                  Gadgets & Hardware
+                  {t("tech.gadgetsHardware", "Gadgets & Hardware")}
                 </h3>
               </div>
               <ChevronRight className="h-5 w-5 text-muted-foreground cursor-pointer" />
@@ -376,9 +379,9 @@ export function TechPage() {
             <div className="mt-6 bg-gradient-to-br from-indigo-600 to-purple-700 rounded-2xl p-6 text-white relative overflow-hidden group cursor-pointer">
               <Rocket className="absolute right-[-20px] bottom-[-20px] h-32 w-32 text-white/10 group-hover:text-white/20 transition-colors transform -rotate-12" />
               <div className="relative z-10">
-                <Badge className="bg-white/20 text-white hover:bg-white/30 border-none mb-3">Startup & Funding</Badge>
-                <h4 className="text-xl font-bold font-heading leading-snug mb-1">Q3 Venture Capital Report is out</h4>
-                <p className="text-indigo-200 text-sm">See which sectors secured the most funding this quarter.</p>
+                <Badge className="bg-white/20 text-white hover:bg-white/30 border-none mb-3">{t("tech.startupFunding", "Startup & Funding")}</Badge>
+                <h4 className="text-xl font-bold font-heading leading-snug mb-1">{t("tech.startupBannerTitle", "Q3 Venture Capital Report is out")}</h4>
+                <p className="text-indigo-200 text-sm">{t("tech.startupBannerDesc", "See which sectors secured the most funding this quarter.")}</p>
               </div>
             </div>
           </div>
@@ -388,9 +391,9 @@ export function TechPage() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6 border-b border-border pb-2">
             <h3 className="text-2xl font-black font-heading uppercase text-slate-900 dark:text-white flex items-center gap-2">
-              <PlayCircle className="h-6 w-6 text-slate-700 dark:text-slate-400" /> Featured Video
+              <PlayCircle className="h-6 w-6 text-slate-700 dark:text-slate-400" /> {t("tech.featuredVideo", "Featured Video")}
             </h3>
-            <Button variant="ghost" className="font-bold">Browse Channel <ChevronRight className="h-4 w-4 ml-1" /></Button>
+            <Button variant="ghost" className="font-bold">{t("tech.browseChannel", "Browse Channel")} <ChevronRight className="h-4 w-4 ml-1" /></Button>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
@@ -438,7 +441,7 @@ export function TechPage() {
         <div className="mb-16">
           <div className="flex items-center justify-between mb-8 border-b border-border pb-2">
             <h3 className="text-2xl font-black font-heading uppercase text-slate-900 dark:text-white">
-              Latest from the Grid
+              {t("tech.latestFromGrid", "Latest from the Grid")}
             </h3>
           </div>
           
@@ -472,7 +475,7 @@ export function TechPage() {
 
           <div className="mt-12 text-center">
             <Button className="rounded-full px-8 py-6 font-bold text-base bg-slate-900 text-white dark:bg-white dark:text-slate-900 hover:opacity-90 transition-opacity">
-              Load More Tech News
+              {t("tech.loadMore", "Load More Tech News")}
             </Button>
           </div>
         </div>
@@ -488,28 +491,28 @@ export function TechPage() {
 
         <div className="container mx-auto px-4 max-w-4xl text-center relative z-10">
           <Badge className="bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500/20 border border-cyan-500/30 rounded-full px-4 py-1 mb-6 uppercase tracking-widest text-xs font-bold">
-            Stay Updated
+            {t("tech.stayUpdated", "Stay Updated")}
           </Badge>
-          <h2 className="text-3xl md:text-5xl font-black font-heading mb-4">The Future, In Your Inbox.</h2>
+          <h2 className="text-3xl md:text-5xl font-black font-heading mb-4">{t("tech.subscribeTitle", "The Future, In Your Inbox.")}</h2>
           <p className="text-slate-400 mb-10 max-w-2xl mx-auto text-lg md:text-xl font-medium">
-            Join 250,000+ tech professionals receiving our curated weekly digest of the most critical technology news, AI breakthroughs, and gadget reviews.
+            {t("tech.subscribeDesc", "Join 250,000+ tech professionals receiving our curated weekly digest of the most critical technology news, AI breakthroughs, and gadget reviews.")}
           </p>
           <form className="flex flex-col sm:flex-row max-w-lg mx-auto gap-3">
             <div className="relative flex-1">
               <Mail className="absolute left-4 top-3.5 h-5 w-5 text-slate-400" />
               <Input 
                 type="email" 
-                placeholder="developer@example.com" 
+                placeholder={t("tech.emailPlaceholder", "developer@example.com")} 
                 className="bg-slate-900/80 border-slate-700 text-white placeholder:text-slate-500 h-12 pl-12 rounded-xl focus-visible:ring-cyan-500 focus-visible:border-transparent" 
                 required
               />
             </div>
             <Button type="button" className="bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold h-12 px-8 rounded-xl transition-colors">
-              Subscribe
+              {t("tech.subscribeBtn", "Subscribe")}
             </Button>
           </form>
           <p className="text-xs text-slate-500 mt-6">
-            Zero spam. One email per week. Unsubscribe at any time.
+            {t("tech.subscribeTerms", "Zero spam. One email per week. Unsubscribe at any time.")}
           </p>
         </div>
       </div>

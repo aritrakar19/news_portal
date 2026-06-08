@@ -1,8 +1,11 @@
 import { motion } from "framer-motion"
 import { NewsForm } from "./components/NewsForm"
 import { SubmissionSidebar } from "./components/SubmissionSidebar"
+import { useTranslation } from "react-i18next"
 
 export function UploadNewsPage() {
+  const { t } = useTranslation()
+
   return (
     <div className="pb-12">
       <motion.div 
@@ -11,9 +14,9 @@ export function UploadNewsPage() {
         transition={{ duration: 0.5 }}
         className="mb-8"
       >
-        <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">Submit News Story</h1>
+        <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{t("upload.title", "Submit News Story")}</h1>
         <p className="text-muted-foreground mt-2 max-w-2xl">
-          Contribute to PUBLIC NEWS 1 by uploading your verified story. Please ensure all facts are accurate and images are clear. Submissions go through an editorial review before publishing.
+          {t("upload.subtitle", "Contribute to PUBLIC NEWS 1 by uploading your verified story. Please ensure all facts are accurate and images are clear. Submissions go through an editorial review before publishing.")}
         </p>
       </motion.div>
 

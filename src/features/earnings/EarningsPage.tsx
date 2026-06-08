@@ -5,7 +5,11 @@ import { EarningsCharts } from "./components/EarningsCharts"
 import { EarningsHistoryTable } from "./components/EarningsHistoryTable"
 import { RevenueSourcesTable } from "./components/RevenueSourcesTable"
 
+import { useTranslation } from "react-i18next"
+
 export function EarningsPage() {
+  const { t } = useTranslation()
+
   const containerVariants: any = {
     hidden: { opacity: 0 },
     visible: {
@@ -32,9 +36,9 @@ export function EarningsPage() {
     >
       <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">Earnings & Payouts</h1>
+          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{t("earnings.title", "Earnings & Payouts")}</h1>
           <p className="text-muted-foreground mt-2 max-w-2xl">
-            Track your revenue from articles, videos, and referrals. All payouts are processed securely on the 5th of every month.
+            {t("earnings.subtitle", "Track your revenue from articles, videos, and referrals. All payouts are processed securely on the 5th of every month.")}
           </p>
         </div>
       </motion.div>

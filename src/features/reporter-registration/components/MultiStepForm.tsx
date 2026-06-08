@@ -7,20 +7,24 @@ import { Form } from "@/components/ui/form"
 import { Button } from "@/components/ui/button"
 import { CheckCircle2 } from "lucide-react"
 
+import { useTranslation } from "react-i18next"
+
 import { registrationSchema, type RegistrationFormValues } from "../schema"
 import { StepPersonal } from "./form-steps/StepPersonal"
 import { StepLocation } from "./form-steps/StepLocation"
 import { StepDocuments } from "./form-steps/StepDocuments"
 import { StepReview } from "./form-steps/StepReview"
 
-const STEPS = [
-  { id: 1, title: "Personal" },
-  { id: 2, title: "Location" },
-  { id: 3, title: "Documents" },
-  { id: 4, title: "Payment" },
-]
-
 export function MultiStepForm() {
+  const { t } = useTranslation()
+
+  const STEPS = [
+    { id: 1, title: t("registration.steps.personal", "Personal") },
+    { id: 2, title: t("registration.steps.location", "Location") },
+    { id: 3, title: t("registration.steps.documents", "Documents") },
+    { id: 4, title: t("registration.steps.payment", "Payment") },
+  ]
+
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -58,7 +62,7 @@ export function MultiStepForm() {
       setCurrentStep((prev) => Math.min(prev + 1, 4))
       window.scrollTo({ top: 100, behavior: "smooth" })
     } else {
-      toast.error("Please fill all required fields correctly.")
+      toast.error(t("registration.form.validationError", "Please fill all required fields correctly."))
     }
   }
 
@@ -72,7 +76,7 @@ export function MultiStepForm() {
     // Simulate API call / Payment gateway initiation
     setTimeout(() => {
       setIsSubmitting(false)
-      toast.success("Payment successful! Welcome to the network.")
+      toast.success(t("registration.form.successMsg", "Payment successful! Welcome to the network."))
       // In reality, redirect to success page or dashboard
     }, 2000)
   }
@@ -146,12 +150,12 @@ export function MultiStepForm() {
                   disabled={currentStep === 1 || isSubmitting}
                   className={currentStep === 1 ? "invisible" : ""}
                 >
-                  Back
+                  {t("registration.form.back", "Back")}
                 </Button>
 
                 {currentStep < 4 && (
                   <Button type="button" onClick={processNextStep} className="bg-primary hover:bg-primary/90 px-8">
-                    Save & Continue
+                    {t("registration.form.saveContinue", "Save & Continue")}
                   </Button>
                 )}
               </div>

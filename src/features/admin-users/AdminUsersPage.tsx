@@ -8,8 +8,10 @@ import { UserActivityFeed } from "./components/UserActivityFeed"
 import { PlusCircle, DownloadCloud } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import type { SystemUser } from "./data/mockUsers"
+import { useTranslation } from "react-i18next"
 
 export function AdminUsersPage() {
+  const { t } = useTranslation()
   const [selectedUser, setSelectedUser] = useState<SystemUser | null>(null)
   const [isSheetOpen, setIsSheetOpen] = useState(false)
 
@@ -44,17 +46,17 @@ export function AdminUsersPage() {
     >
       <motion.div variants={itemVariants} className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">System Users</h1>
+          <h1 className="text-3xl font-heading font-extrabold text-slate-900 dark:text-white">{t("admin.users.title", "System Users")}</h1>
           <p className="text-muted-foreground mt-2 max-w-2xl">
-            Manage roles, permissions, and account statuses across the entire platform.
+            {t("admin.users.subtitle", "Manage roles, permissions, and account statuses across the entire platform.")}
           </p>
         </div>
         <div className="flex gap-3">
           <Button variant="outline" className="hidden sm:flex">
-            <DownloadCloud className="mr-2 h-4 w-4" /> Export Report
+            <DownloadCloud className="mr-2 h-4 w-4" /> {t("admin.users.exportReport", "Export Report")}
           </Button>
           <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-            <PlusCircle className="mr-2 h-4 w-4" /> Create New User
+            <PlusCircle className="mr-2 h-4 w-4" /> {t("admin.users.createNewUser", "Create New User")}
           </Button>
         </div>
       </motion.div>
